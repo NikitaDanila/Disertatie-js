@@ -18,7 +18,7 @@ function Profile({ profile }) {
       <ListGroup variant="flush">
         <ListGroup.Item>{profile.email}</ListGroup.Item>
         <ListGroup.Item>{profile.mobile_number}</ListGroup.Item>
-        <ListGroup.Item>Ap: {profile.apartement_number}</ListGroup.Item>
+        <ListGroup.Item>Ap: {profile.apartment_number}</ListGroup.Item>
       </ListGroup>
     </Card>
   );

@@ -1,19 +1,19 @@
 import axios from "axios";
 
 import {
-    USER_DETAILS_FAIL,
-    USER_DETAILS_REQUEST,
-    USER_DETAILS_RESET,
-    USER_DETAILS_SUCCESS,
-    USER_LOGIN_FAIL,
-    USER_LOGIN_REQUEST,
-    USER_LOGIN_SUCCESS,
-    USER_REGISTER_FAIL,
-    USER_REGISTER_REQUEST,
-    USER_REGISTER_SUCCESS,
-    USER_UPDATE_PROFILE_FAIL,
-    USER_UPDATE_PROFILE_REQUEST,
-    USER_UPDATE_PROFILE_SUCCESS,
+  USER_DETAILS_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_RESET,
+  USER_DETAILS_SUCCESS,
+  USER_LOGIN_FAIL,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_REGISTER_FAIL,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_UPDATE_PROFILE_FAIL,
+  USER_UPDATE_PROFILE_REQUEST,
+  USER_UPDATE_PROFILE_SUCCESS,
 } from "../constants/userConstants";
 
 
@@ -158,7 +158,7 @@ export const updateUserProfile =
       };
 
       const { data } = await axios.put(
-        `/api/users/updateProfile`,
+        `/api/users/updateProfile/`,
         user,
         config
       );

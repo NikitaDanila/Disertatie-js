@@ -15,22 +15,21 @@ function Login({ location, history }) {
 
   const dispatch = useDispatch();
 
-  // const redirect = location?.search ? location?.search.split("=")[1] : "/";
+  const redirect = location?.search ? location?.search.split("=")[1] : "/";
 
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
 
-  useEffect(() => {
-    if (userInfo) {
-      // history.push(redirect);
-      // console.log("redirect");
-      redirect("/profile");
-    }
-  });
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     // history.push('/profile')
+  //     return redirect('/');
+  //   }
+  //   return null;
+  // });
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // console.log("working");
     dispatch(login(email, password));
   };
 

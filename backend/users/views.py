@@ -95,10 +95,11 @@ def updateProfile(request):
         user.password = make_password(data['password'])
     if data['email'] != "":
         user.email = data['email']
+    if (profile.apartment_number != data['apartment_number']):
+        profile.apartment_number = data['apartment_number']
+    if profile.mobile_number != data['mobile_number']:
+        profile.mobile_number = data['mobile_number']
 
-    profile.apartment_number = data['apartment_number']
-    profile.mobile_number = data['mobile_number']
-
-    user.save()
     profile.save()
+    user.save()
     return Response(serializer.data)

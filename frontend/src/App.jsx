@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <main>
+      <main>        
         <Container>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
@@ -23,6 +23,7 @@ function App() {
           </Routes>
         </Container>
       </main>
+
       <Footer />
     </Router>
   );
