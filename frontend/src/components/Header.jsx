@@ -26,7 +26,7 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               {userInfo ? (
-                <NavDropdown title={userInfo.fullname} id="username">
+                <NavDropdown title={userInfo.fullname} id="username" className="right">
                   <LinkContainer to="profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
@@ -35,19 +35,20 @@ function Header() {
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
+
               ) : (
+                <>
                 <LinkContainer to="/login">
                   <Nav.Link>Login</Nav.Link>
                 </LinkContainer>
-              )}
-
               <LinkContainer to="/register">
                 <Nav.Link>Register</Nav.Link>
               </LinkContainer>
+              </>
+              )}
 
-              <LinkContainer to="/profile">
-                <Nav.Link>My Profile</Nav.Link>
-              </LinkContainer>
+
+              
             </Nav>
           </Navbar.Collapse>
         </Container>

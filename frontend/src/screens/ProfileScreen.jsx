@@ -41,7 +41,7 @@ function ProfileScreen() {
         setEmail(user.email);
         setMobileNumber(user.mobile_number);
         setApartmentNumber(user.apartment_number);
-        setProfilePicture(user.profile_picture)
+        setProfilePicture(user.profilePicture)
       }
     }
   }, [dispatch, userInfo, user]);
@@ -66,9 +66,15 @@ function ProfileScreen() {
   };
   return (
     <Row>
+      <Col md={3}> 
+        <Image className="img-thumbnail" src={profile_picture}/>
+        <Button type="submit" variant="outline-dark">
+              Update
+        </Button>
+      </Col>
+       
       <Col md={5}>
         <h2>User Profile</h2>
-        
         {message && <Message variant="danger">{message}</Message>}
         {/* <Image rounded src={profile_picture} /> */}
         <Form onSubmit={submitHandler}>
