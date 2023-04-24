@@ -18,14 +18,14 @@ def createProfile(sender, instance, created, **kwargs):
         user = instance
         profile = Profile.objects.create(
             user=user,
-            username=user.username,
+            username=user.email,
             first_name=user.first_name,
             last_name=user.last_name,
             email=user.email
         )
 
 
-@receiver(pre_save, sender=User)
+@receiver(post_save, sender=User)
 def updateProfile(sender, instance, **kwargs):
     user = instance
     profile = Profile.objects.get(user=user.id)

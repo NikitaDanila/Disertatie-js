@@ -18,7 +18,7 @@ function HomeScreen() {
   }, []);
 
   return (
-    <div>
+    <>
       <Row>
         {profiles.map((profile) => (
           <Col key={profile.id} sm={12} md={6} lg={4} xl={3}>
@@ -26,7 +26,7 @@ function HomeScreen() {
           </Col>
         ))}
       </Row>
-    </div>
+    </>
   );
 }
 

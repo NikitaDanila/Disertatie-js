@@ -25,8 +25,8 @@ function RegisterScreen({ location, history }) {
 
   useEffect(() => {
     if (userInfo) {
-      // history.push("/");
-      console.log("redirect");
+      redirect("/profile")
+      // console.log("redirect");
     }
   });
 
@@ -37,7 +37,6 @@ function RegisterScreen({ location, history }) {
     } else {
       dispatch(register(first_name, last_name, email, password));
     }
-    // console.log("working");
   };
   return (
     <div>

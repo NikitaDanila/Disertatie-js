@@ -7,6 +7,7 @@ from .models import Profile
 class UserSerializer(serializers.ModelSerializer):
     fullname = serializers.SerializerMethodField(read_only=True)
     isAdmin = serializers.SerializerMethodField(read_only=True)
+    # user_id = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = User
@@ -21,6 +22,9 @@ class UserSerializer(serializers.ModelSerializer):
 
     def get_isAdmin(self, obj):
         return obj.is_staff
+    # def get_user_id(self, obj):
+    #     user_id = obj.id
+    #     return user_id
 
 
 class UserSerializerWithToken(UserSerializer):

@@ -32,14 +32,13 @@ class MyTokenObtainPairView(TokenObtainPairView):
 @api_view(['POST'])
 def registerUser(request):
     data = request.data
-
+    print(data)
     try:
-
         user = User.objects.create(
             username=data['email'],
+            email=data['email'],
             first_name=data['first_name'],
             last_name=data['last_name'],
-            email=data['email'],
             password=make_password(data['password'])
         )
         serializer = UserSerializerWithToken(user, many=False)
@@ -60,7 +59,7 @@ def getAllUsers(request):
 
 @ api_view(['GET'])
 @ permission_classes([IsAuthenticated])
-def getUser(request):
+def getCurrentUser(request):
     user = request.user
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
@@ -75,7 +74,7 @@ def getProfiles(request):
 
 @ api_view(['GET'])
 def getProfile(request, pk):
-    profile = Profile.objects.get(id=pk)
+    profile = Profile.objects.get(profile_id=pk)
     serializer = ProfileSerializer(profile, many=False)
     return Response(serializer.data)
 
@@ -97,7 +96,7 @@ def updateProfile(request):
     if data['email'] != "":
         user.email = data['email']
 
-    profile.apartment_number = data['apartement_number']
+    profile.apartment_number = data['apartment_number']
     profile.mobile_number = data['mobile_number']
 
     user.save()
