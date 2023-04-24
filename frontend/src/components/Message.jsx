@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Alert } from "react-bootstrap";
 
 function Message({ variant, children }) {

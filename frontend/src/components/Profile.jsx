@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function Profile({ profile }: { profile: any }) {
+function Profile({ profile }) {
   return (
     <Card style={{ width: "20rem" }}>
       <Link to={`/profile/${profile.id}`}>

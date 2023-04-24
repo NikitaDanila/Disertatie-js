@@ -1,11 +1,11 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Profile from "../components/Profile";
 
 function HomeScreen() {
-  const [profiles, setProfiles] = useState<any[]>([]);
+  const [profiles, setProfiles] = useState([]);
 
   useEffect(() => {
     async function fetchProfiles() {

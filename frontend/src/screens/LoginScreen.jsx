@@ -1,32 +1,34 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, redirect } from "react-router-dom";
 import { login } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import Message from "../components/Message";
-import { useAppDispatch, useAppSelector } from "../hooks";
 
-function Login({ location, history }: any) {
+function Login({ location, history }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   // const redirect = location?.search ? location?.search.split("=")[1] : "/";
 
-  const userLogin = useAppSelector((state: any) => state.userLogin);
+  const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
-      // history.push("/");
+      // history.push(redirect);
       // console.log("redirect");
       redirect("/profile");
     }
   });
 
-  const submitHandler = (e: any) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     // console.log("working");
     dispatch(login(email, password));

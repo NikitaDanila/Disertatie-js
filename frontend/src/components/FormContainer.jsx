@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+/* eslint-disable react/prop-types */
 import { Col, Container, Row } from "react-bootstrap";
 
 function FormContainer({ children }) {

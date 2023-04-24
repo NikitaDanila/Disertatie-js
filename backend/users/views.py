@@ -97,7 +97,7 @@ def updateProfile(request):
     if data['email'] != "":
         user.email = data['email']
 
-    profile.apartement_number = data['apartement_number']
+    profile.apartment_number = data['apartement_number']
     profile.mobile_number = data['mobile_number']
 
     user.save()

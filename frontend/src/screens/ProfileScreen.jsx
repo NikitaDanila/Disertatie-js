@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { register } from "../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import Message from "../components/Message";
-import { useAppDispatch, useAppSelector } from "../hooks";
 
-function RegisterScreen({ location, history }: any) {
+import Profile from "../components/Profile";
+
+function ProfileScreen() {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,38 +17,54 @@ function RegisterScreen({ location, history }: any) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
-  const redirect = location?.search ? location?.search.split("=")[1] : "/";
+  const userDetails = useSelector((state) => state.userDetails);
+  const { error, loading, user } = userDetails;
 
-  const userRegister = useAppSelector((state: any) => state.userRegister);
-  const { error, loading, userInfo } = userRegister;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (userInfo) {
+    if (!userInfo) {
       // history.push("/");
-      console.log("redirect");
+      console.log("redirect to login");
+    } else {
+      if (!user) {
+        dispatch(getUserDetails("1"));
+      } else {
+        setFirstName(userInfo.first_name);
+        setLastName(userInfo.last_name);
+        setEmail(userInfo.email);
+      }
     }
-  });
+  }, [dispatch, userInfo, user]);
 
-  const submitHandler = (e: any) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     if (password != confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      dispatch(register(first_name, last_name, email, password));
+      dispatch(
+        updateUserProfile({
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          password: password,
+        })
+      );
     }
     // console.log("working");
   };
   return (
-    <div>
-      <FormContainer>
+    <Row>
+      <Col md={3}>
+        <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
         <Form onSubmit={submitHandler}>
-          <Form.Group controlId="fist_name">
+          <Form.Group controlId="first_name">
             <Form.Label>First Name</Form.Label>
             <Form.Control
-              required
               type="name"
               placeholder="Enter First Name"
               value={first_name}
@@ -56,7 +74,6 @@ function RegisterScreen({ location, history }: any) {
           <Form.Group controlId="last_name">
             <Form.Label>Last Name</Form.Label>
             <Form.Control
-              required
               type="name"
               placeholder="Enter Last Name"
               value={last_name}
@@ -66,7 +83,6 @@ function RegisterScreen({ location, history }: any) {
           <Form.Group controlId="email">
             <Form.Label>Email Address</Form.Label>
             <Form.Control
-              required
               type="email"
               placeholder="Enter Email"
               value={email}
@@ -76,7 +92,6 @@ function RegisterScreen({ location, history }: any) {
           <Form.Group controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              required
               type="password"
               placeholder="Enter password"
               value={password}
@@ -86,7 +101,6 @@ function RegisterScreen({ location, history }: any) {
           <Form.Group controlId="confirmPassword">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
-              required
               type="password"
               placeholder="Re-enter password"
               value={confirmPassword}
@@ -94,20 +108,12 @@ function RegisterScreen({ location, history }: any) {
             ></Form.Control>
           </Form.Group>
           <Button type="submit" variant="outline-dark">
-            Register
+            Update
           </Button>
         </Form>
-        <Row className="py-3">
-          <Col>
-            Have an account?{" "}
-            <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-              Sign In!
-            </Link>
-          </Col>
-        </Row>
-      </FormContainer>
-    </div>
+      </Col>
+    </Row>
   );
 }
 
-export default RegisterScreen;
+export default ProfileScreen;

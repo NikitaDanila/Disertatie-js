@@ -14,8 +14,9 @@ class Profile(models.Model):
         null=True, blank=True, default="default.jpg")
     email = models.EmailField(max_length=200, null=False, blank=False)
     mobile_number = models.CharField(max_length=13, null=False, blank=False)
-    apartement_number = models.CharField(max_length=3, null=False, blank=False)
+    apartment_number = models.CharField(max_length=3, null=False, blank=False)
     createdAt = models.DateTimeField(auto_now_add=True)
+    profile_id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
         return f'{self.username}'
