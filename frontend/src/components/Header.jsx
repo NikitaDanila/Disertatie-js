@@ -41,13 +41,19 @@ function Header() {
                 <LinkContainer to="/login">
                   <Nav.Link>Login</Nav.Link>
                 </LinkContainer>
-              <LinkContainer to="/register">
-                <Nav.Link>Register</Nav.Link>
-              </LinkContainer>
+                <LinkContainer to="/register">
+                  <Nav.Link>Register</Nav.Link>
+                </LinkContainer>
               </>
               )}
 
-
+                {userInfo && userInfo.isAdmin  && (
+                  <NavDropdown title='Admin' id="admin-menu" className="right">
+                    <LinkContainer to="/admin/userlist">
+                      <NavDropdown.Item>Users</NavDropdown.Item>
+                    </LinkContainer>
+                  </NavDropdown>
+                )}
               
             </Nav>
           </Navbar.Collapse>
