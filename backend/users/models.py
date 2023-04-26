@@ -17,6 +17,7 @@ class Profile(models.Model):
     apartment_number = models.CharField(max_length=3, null=False, blank=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     profile_id = models.AutoField(primary_key=True, editable=False)
+    isAdmin = models.BooleanField(null=False, blank=True, default=False)
 
     def __str__(self):
         return f'{self.username}'
