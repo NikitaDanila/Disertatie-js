@@ -33,7 +33,7 @@ function ProfileScreen() {
       // history.push("/");
       console.log("redirect to login");
     } else {
-      if (!user || !user.first_name) {
+      if (!user || !user.first_name || userInfo.id != user.user) {
         dispatch(getUserDetails(userInfo.id));
       } else {
         setFirstName(user.first_name);
@@ -41,7 +41,7 @@ function ProfileScreen() {
         setEmail(user.email);
         setMobileNumber(user.mobile_number);
         setApartmentNumber(user.apartment_number);
-        setProfilePicture(user.profilePicture)
+        setProfilePicture(user.profilePicture);
       }
     }
   }, [dispatch, userInfo, user]);
@@ -58,7 +58,7 @@ function ProfileScreen() {
           email: email,
           password: password,
           mobile_number: mobile_number,
-          apartment_number:apartment_number,
+          apartment_number: apartment_number,
           // profile_picture:profile_picture
         })
       );
@@ -66,13 +66,13 @@ function ProfileScreen() {
   };
   return (
     <Row>
-      <Col md={3}> 
-        <Image className="img-thumbnail" src={profile_picture}/>
+      <Col md={3}>
+        <Image className="img-thumbnail" src={profile_picture} />
         <Button type="submit" variant="outline-dark">
-              Update
+          Update
         </Button>
       </Col>
-       
+
       <Col md={5}>
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
