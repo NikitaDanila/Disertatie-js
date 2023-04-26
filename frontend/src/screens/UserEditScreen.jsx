@@ -3,13 +3,15 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { getUserDetails } from "../actions/userActions";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { getUserDetails, updateUser } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import Message from "../components/Message";
+import { USER_UPDATE_RESET } from "../constants/userConstants";
 
 function UserEditScreen() {
   const { id } = useParams();
+  let navigateTo = useNavigate();
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,19 +23,40 @@ function UserEditScreen() {
   const userDetails = useSelector((state) => state.userDetails);
   const { error, loading, user } = userDetails;
 
+  const userUpdate = useSelector((state) => state.userUpdate);
+  const {
+    error: errorUpdate,
+    loading: loadingUpdate,
+    success: successUpdate,
+  } = userUpdate;
+
   useEffect(() => {
-    if (!user || !user.username || user.profile_id !== Number(id)) {
-      dispatch(getUserDetails(Number(id)));
+    if (successUpdate) {
+      dispatch({ type: USER_UPDATE_RESET });
+      navigateTo("/admin/userlist");
     } else {
-      setFirstName(user.first_name);
-      setLastName(user.last_name);
-      setEmail(user.email);
-      setIsAdmin(user.isAdmin);
+      if (!user || !user.username || user.profile_id !== Number(id)) {
+        dispatch(getUserDetails(Number(id)));
+      } else {
+        setFirstName(user.first_name);
+        setLastName(user.last_name);
+        setEmail(user.email);
+        setIsAdmin(user.isAdmin);
+      }
     }
-  }, [dispatch, user, id]);
+  }, [dispatch, user, id, successUpdate, navigateTo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      updateUser({
+        id: user.user,
+        first_name,
+        last_name,
+        email,
+        isAdmin,
+      })
+    );
   };
   return (
     <div>

@@ -3,12 +3,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { register } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import Message from "../components/Message";
 
-function RegisterScreen({ location, history }) {
+function RegisterScreen() {
+  let navigateTo = useNavigate();
+  let location = useLocation();
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -25,8 +27,7 @@ function RegisterScreen({ location, history }) {
 
   useEffect(() => {
     if (userInfo) {
-      redirect("/profile")
-      // console.log("redirect");
+      navigateTo("/profile");
     }
   });
 

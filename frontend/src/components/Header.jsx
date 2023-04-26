@@ -1,6 +1,5 @@
-
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../actions/userActions";
 
@@ -26,7 +25,11 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               {userInfo ? (
-                <NavDropdown title={userInfo.fullname} id="username" className="right">
+                <NavDropdown
+                  title={userInfo.fullname}
+                  id="username"
+                  className="right"
+                >
                   <LinkContainer to="profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
@@ -35,26 +38,24 @@ function Header() {
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
-
               ) : (
                 <>
-                <LinkContainer to="/login">
-                  <Nav.Link>Login</Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/register">
-                  <Nav.Link>Register</Nav.Link>
-                </LinkContainer>
-              </>
+                  <LinkContainer to="/login">
+                    <Nav.Link>Login</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/register">
+                    <Nav.Link>Register</Nav.Link>
+                  </LinkContainer>
+                </>
               )}
 
-                {userInfo && userInfo.isAdmin  && (
-                  <NavDropdown title='Admin' id="admin-menu" className="right">
-                    <LinkContainer to="/admin/userlist">
-                      <NavDropdown.Item>Users</NavDropdown.Item>
-                    </LinkContainer>
-                  </NavDropdown>
-                )}
-              
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title="Admin" id="admin-menu" className="right">
+                  <LinkContainer to="/admin/userlist">
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

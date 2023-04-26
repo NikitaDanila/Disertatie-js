@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import Message from "../components/Message";
@@ -10,6 +10,7 @@ import Message from "../components/Message";
 import Profile from "../components/Profile";
 
 function ProfileScreen() {
+  let navigateTo = useNavigate();
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,8 +31,7 @@ function ProfileScreen() {
 
   useEffect(() => {
     if (!userInfo) {
-      // history.push("/");
-      console.log("redirect to login");
+      navigateTo("/");
     } else {
       if (!user || !user.first_name || userInfo.id != user.user) {
         dispatch(getUserDetails(userInfo.id));

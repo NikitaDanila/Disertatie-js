@@ -4,12 +4,13 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { redirect } from "react-router";
 import { LinkContainer } from "react-router-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { deleteUser, listUsers } from "../actions/userActions";
 import Message from "../components/Message";
 
-function UserListScreen({ history }) {
+function UserListScreen() {
+  let navigateTo = useNavigate();
   const dispatch = useDispatch();
 
   const userList = useSelector((state) => state.userList);
@@ -24,7 +25,7 @@ function UserListScreen({ history }) {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     } else {
-      // history.push('/register')
+      navigateTo("/register");
     }
   }, [dispatch, userInfo]);
 

@@ -69,19 +69,19 @@ def getUserById(request, pk):
 @ permission_classes([IsAuthenticated])
 def updateUser(request, pk):
     user = User.objects.get(id=pk)
-    profile = Profile.objects.get(user=user.id)
+    # profile = Profile.objects.get(user=user.id)
 
     data = request.data
 
     user.first_name = data['first_name']
     user.last_name = data['last_name']
     user.email = data['email']
-    user.is_staff = data['isAdmin']
+    # user.is_staff = data['isAdmin']
 
-    profile.apartment_number = data['apartment_number']
-    profile.mobile_number = data['mobile_number']
+    # profile.apartment_number = data['apartment_number']
+    # profile.mobile_number = data['mobile_number']
 
-    profile.save()
+    # profile.save()
     user.save()
 
     serializer = UserSerializer(user, many=False)

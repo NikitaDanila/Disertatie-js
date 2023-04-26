@@ -4,12 +4,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, redirect } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { login } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import Message from "../components/Message";
 
-function Login({ location, history }) {
+function Login() {
+  let navigateTo = useNavigate();
+  let location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,13 +22,11 @@ function Login({ location, history }) {
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
 
-  // useEffect(() => {
-  //   if (!userInfo) {
-  //     // history.push('/profile')
-  //     return redirect('/');
-  //   }
-  //   return null;
-  // });
+  useEffect(() => {
+    if (userInfo) {
+      navigateTo("/profile");
+    }
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
