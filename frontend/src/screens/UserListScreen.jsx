@@ -6,10 +6,13 @@ import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { deleteUser, listUsers } from "../actions/userActions";
+import { deleteUser, getUserDetails, listUsers } from "../actions/userActions";
 import Message from "../components/Message";
+import UserUpdateModal from "../components/UserUpdateModal";
 
 function UserListScreen() {
+  const [modalShow, setModalShow] = useState(false);
+  const [userId, setUserId] = useState(null);
   let navigateTo = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,13 +24,14 @@ function UserListScreen() {
 
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     } else {
       navigateTo("/register");
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, navigateTo]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Delete permanently?")) {
@@ -62,11 +66,20 @@ function UserListScreen() {
                 )}
               </td>
               <td style={{ textAlign: "center" }}>
-                <LinkContainer to={`/admin/user/${user.id}/edit`}>
-                  <Button variant="light" className="btn-sm">
-                    <i className="fas fa-edit"></i>
-                  </Button>
-                </LinkContainer>
+                {/* <LinkContainer to={`/admin/user/${user.id}/edit`}> */}
+                <Button
+                  id="btn"
+                  variant="light"
+                  className="btn-sm"
+                  onClick={() => {
+                    setUserId(user.id);
+                    setModalShow(true);
+                    dispatch(getUserDetails(user.id));
+                  }}
+                >
+                  <i className="fas fa-edit"></i>
+                </Button>
+                {/* </LinkContainer> */}
                 <Button
                   variant="danger"
                   className="btn-sm"
@@ -78,6 +91,11 @@ function UserListScreen() {
             </tr>
           ))}
         </tbody>
+        <UserUpdateModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          userid={userId}
+        />
       </Table>
     </>
   );
