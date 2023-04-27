@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-import HomeScreen from "./screens/HomeScreen";
+import IndexScreen from "./screens/IndexScreen";
 import Login from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
@@ -18,7 +18,7 @@ function App() {
       <main>
         <Container>
           <Routes>
-            <Route path="/" element={<HomeScreen />} />
+            <Route path="/" element={<IndexScreen />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
