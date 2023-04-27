@@ -96,7 +96,10 @@ function HomeScreen() {
         </tbody>
       </Table>
       <Modal show={show} onHide={() => setShow(false)}>
-        <Modal.Title>Intretinere</Modal.Title>
+        <Modal.Header>
+          <Modal.Title>Intretinere</Modal.Title>
+        </Modal.Header>
+
         <Modal.Body>
           Prin această platformă online, ne propunem să oferim informaţii cât
           mai detaliate legate de modul de calcul a întreţinerii de la bloc.
@@ -124,9 +127,6 @@ function HomeScreen() {
             </li>
           }
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setShow(false)}>Close</Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
