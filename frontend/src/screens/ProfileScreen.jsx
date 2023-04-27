@@ -4,10 +4,7 @@ import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import FormContainer from "../components/FormContainer";
 import Message from "../components/Message";
-
-import Profile from "../components/Profile";
 
 function ProfileScreen() {
   let navigateTo = useNavigate();
@@ -44,7 +41,7 @@ function ProfileScreen() {
         setProfilePicture(user.profilePicture);
       }
     }
-  }, [dispatch, userInfo, user]);
+  }, [dispatch, userInfo, user, navigateTo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -59,94 +56,96 @@ function ProfileScreen() {
           password: password,
           mobile_number: mobile_number,
           apartment_number: apartment_number,
-          // profile_picture:profile_picture
+          // profile_picture: profile_picture,
         })
       );
     }
   };
   return (
-    <Row>
-      <Col md={3}>
-        <Image className="img-thumbnail" src={profile_picture} />
-        <Button type="submit" variant="outline-dark">
-          Update
-        </Button>
-      </Col>
-
-      <Col md={5}>
-        <h2>User Profile</h2>
-        {message && <Message variant="danger">{message}</Message>}
-        {/* <Image rounded src={profile_picture} /> */}
-        <Form onSubmit={submitHandler}>
-          <Form.Group controlId="first_name">
-            <Form.Label>First Name</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter First Name"
-              value={first_name}
-              onChange={(e) => setFirstName(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="last_name">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter Last Name"
-              value={last_name}
-              onChange={(e) => setLastName(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="email">
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="confirmPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Re-enter password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="mobile_number">
-            <Form.Label>Mobile Number</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter Mobile"
-              value={mobile_number}
-              onChange={(e) => setMobileNumber(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="apartment_number">
-            <Form.Label>Apartment Number</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter Apartment"
-              value={apartment_number}
-              onChange={(e) => setApartmentNumber(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Button type="submit" variant="outline-dark">
-            Update
-          </Button>
-        </Form>
-      </Col>
-    </Row>
+    <Container>
+      <h2>User Profile</h2>
+      {message && <Message variant="danger">{message}</Message>}
+      <Form onSubmit={submitHandler}>
+        <Row>
+          <Col>
+            <Image
+              width={320}
+              height={320}
+              className="rounded-circle img-fluid"
+              src={profile_picture}
+            />
+          </Col>
+          <Col>
+            <Form.Group controlId="first_name">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter First Name"
+                value={first_name}
+                onChange={(e) => setFirstName(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="last_name">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Last Name"
+                value={last_name}
+                onChange={(e) => setLastName(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="email">
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="confirmPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Re-enter password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="mobile_number">
+              <Form.Label>Mobile Number</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Mobile"
+                value={mobile_number}
+                onChange={(e) => setMobileNumber(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="apartment_number">
+              <Form.Label>Apartment Number</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Apartment"
+                value={apartment_number}
+                onChange={(e) => setApartmentNumber(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Button type="submit" variant="outline-dark">
+              Update
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+    </Container>
   );
 }
 

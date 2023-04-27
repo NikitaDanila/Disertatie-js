@@ -118,6 +118,7 @@ def updateProfile(request):
     serializer = UserSerializerWithToken(user, many=False)
 
     data = request.data
+    # print(data)
 
     user.first_name = data['first_name']
     user.last_name = data['last_name']
@@ -130,6 +131,9 @@ def updateProfile(request):
         profile.apartment_number = data['apartment_number']
     if profile.mobile_number != data['mobile_number']:
         profile.mobile_number = data['mobile_number']
+    # print(data['profile_picture'])
+    # if profile.profilePicture != data['profile_picture']:
+    #     profile.profilePicture = data['profile_picture']
 
     profile.save()
     user.save()

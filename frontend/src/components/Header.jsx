@@ -22,13 +22,16 @@ function Header() {
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="justify-content-end"
+          >
             <Nav className="mr-auto">
               {userInfo ? (
                 <NavDropdown
                   title={userInfo.fullname}
                   id="username"
-                  className="right"
+                  className=""
                 >
                   <LinkContainer to="profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
