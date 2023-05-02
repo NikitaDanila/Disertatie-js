@@ -5,16 +5,13 @@ import {
   ASSOCIATION_DETAILS_SUCCESS,
 } from "../constants/associationConstants";
 
-export const associationDetailsReducer = (
-  state = { associations: [] },
-  action
-) => {
+export const associationDetailsReducer = (state = {}, action) => {
   switch (action.type) {
     case ASSOCIATION_DETAILS_REQUEST:
       return { loading: true };
 
     case ASSOCIATION_DETAILS_SUCCESS:
-      return { loading: false, associations: action.payload };
+      return { loading: false, association: action.payload };
 
     case ASSOCIATION_DETAILS_FAIL:
       return { loading: false, error: action.payload };

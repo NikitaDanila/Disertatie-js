@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getAssociationDetails } from "../actions/associationActions";
-import ModalInfoAsociatie from "../components/ModalInfoAsociatie";
+import ModalInfoAssociation from "../components/ModalInfoAssociation";
 import {
   ASSOCIATION_DETAILS_REQUEST,
   ASSOCIATION_DETAILS_SUCCESS,
@@ -28,7 +28,10 @@ function HomeScreen() {
       >
         Informatii Asociatie
       </Button>
-      <ModalInfoAsociatie show={showModal} onHide={() => setShowModal(false)} />
+      <ModalInfoAssociation
+        show={showModal}
+        onHide={() => setShowModal(false)}
+      />
     </div>
   );
 }
