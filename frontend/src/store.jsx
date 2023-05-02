@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import thunk from "redux-thunk";
+import { associationDetailsReducer } from "./reducers/associationReducers";
 import {
   userDeleteReducer,
   userDetailsReducer,
@@ -19,6 +21,8 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   userList: userListReducer,
   userDelete: userDeleteReducer,
+
+  // associationDetails: associationDetailsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
