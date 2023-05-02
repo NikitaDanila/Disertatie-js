@@ -6,7 +6,7 @@ import {
 } from "../constants/associationConstants";
 
 export const associationDetailsReducer = (
-  state = { associationInfo: [] },
+  state = { associations: [] },
   action
 ) => {
   switch (action.type) {
@@ -14,7 +14,7 @@ export const associationDetailsReducer = (
       return { loading: true };
 
     case ASSOCIATION_DETAILS_SUCCESS:
-      return { loading: false, associationInfo: action.payload };
+      return { loading: false, associations: action.payload };
 
     case ASSOCIATION_DETAILS_FAIL:
       return { loading: false, error: action.payload };

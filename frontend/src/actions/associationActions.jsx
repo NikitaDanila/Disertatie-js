@@ -17,7 +17,7 @@ export const getAssociationDetails = () => async (dispatch) => {
       },
     };
     const { data } = await axios.get(
-      "/api/association/getAllAssociations",
+      "/api/association/getAllAssociations/",
       config
     );
     dispatch({

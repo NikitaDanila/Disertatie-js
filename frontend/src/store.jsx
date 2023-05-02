@@ -22,7 +22,7 @@ const reducer = combineReducers({
   userList: userListReducer,
   userDelete: userDeleteReducer,
 
-  // associationDetails: associationDetailsReducer,
+  associationDetails: associationDetailsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
