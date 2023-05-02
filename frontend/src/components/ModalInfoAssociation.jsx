@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Modal, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import TableAssociationInfo from "./TableAssociationInfo";
 
 function ModalInfoAssociation(props) {
   const [name, setName] = useState("");
@@ -41,118 +42,19 @@ function ModalInfoAssociation(props) {
       <Modal.Dialog>
         <Modal.Title>Informatii despre asociatie</Modal.Title>
         <Modal.Body>
-          <Table bordered hover striped>
-            <thead>
-              <tr>
-                <td>Name</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{name}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>Email</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{email}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>Phone Number</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{phone}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>Schedule of collection</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{schedule}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>Address of Collection</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{addressOfCollection}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>Bank IBAN</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{iban}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>Fiscal Code</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{fiscalCode}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>Address</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{address}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>President</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{president}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>Administrator</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{administrator}</td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <td>Censor</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{censor}</td>
-              </tr>
-            </tbody>
-          </Table>
+          <TableAssociationInfo
+            name={name}
+            email={email}
+            phone_number={phone}
+            schedule={schedule}
+            addressOfCollection={addressOfCollection}
+            iban={iban}
+            fiscalCode={fiscalCode}
+            address={address}
+            president={president}
+            administrator={administrator}
+            censor={censor}
+          />
         </Modal.Body>
       </Modal.Dialog>
     </Modal>
