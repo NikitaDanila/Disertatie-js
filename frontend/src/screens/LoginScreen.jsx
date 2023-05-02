@@ -24,7 +24,7 @@ function Login() {
 
   useEffect(() => {
     if (userInfo) {
-      navigateTo("/profile");
+      navigateTo("/homepage");
     }
   });
 
