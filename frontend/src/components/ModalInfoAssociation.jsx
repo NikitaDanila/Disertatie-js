@@ -38,25 +38,23 @@ function ModalInfoAssociation(props) {
   }, [association]);
 
   return (
-    <Modal show={props.show} onHide={props.onHide}>
-      <Modal.Dialog>
-        <Modal.Title>Informatii despre asociatie</Modal.Title>
-        <Modal.Body>
-          <TableAssociationInfo
-            name={name}
-            email={email}
-            phone_number={phone}
-            schedule={schedule}
-            addressOfCollection={addressOfCollection}
-            iban={iban}
-            fiscalCode={fiscalCode}
-            address={address}
-            president={president}
-            administrator={administrator}
-            censor={censor}
-          />
-        </Modal.Body>
-      </Modal.Dialog>
+    <Modal show={props.show} onHide={props.onHide} scrollable="true" size="lg">
+      <Modal.Title>Informatii despre asociatie</Modal.Title>
+      <Modal.Body>
+        <TableAssociationInfo
+          name={name}
+          email={email}
+          phone_number={phone}
+          schedule={schedule}
+          addressOfCollection={addressOfCollection}
+          iban={iban}
+          fiscalCode={fiscalCode}
+          address={address}
+          president={president}
+          administrator={administrator}
+          censor={censor}
+        />
+      </Modal.Body>
     </Modal>
   );
 }

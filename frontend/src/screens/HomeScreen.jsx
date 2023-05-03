@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getAssociationDetails } from "../actions/associationActions";
+import ChartWaterConsumption from "../components/ChartWaterConsumption";
 import ModalInfoAssociation from "../components/ModalInfoAssociation";
 import {
   ASSOCIATION_DETAILS_REQUEST,
@@ -19,20 +20,26 @@ function HomeScreen() {
   const { userInfo } = userLogin;
 
   return (
-    <div>
-      <Button
-        onClick={() => {
-          setShowModal(true);
-          dispatch(getAssociationDetails());
-        }}
-      >
-        Informatii Asociatie
-      </Button>
-      <ModalInfoAssociation
-        show={showModal}
-        onHide={() => setShowModal(false)}
-      />
-    </div>
+    <Container fluid>
+      <Row className="justify-content-md-end">
+        <Button
+          style={{ width: "auto" }}
+          size="sm"
+          onClick={() => {
+            setShowModal(true);
+            dispatch(getAssociationDetails());
+          }}
+        >
+          Informatii Asociatie
+        </Button>
+
+        <ModalInfoAssociation
+          show={showModal}
+          onHide={() => setShowModal(false)}
+        />
+      </Row>
+      <ChartWaterConsumption />
+    </Container>
   );
 }
 
