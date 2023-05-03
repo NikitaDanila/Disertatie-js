@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     "corsheaders",
-    'association.apps.AssociationConfig'
+    'association.apps.AssociationConfig',
+    'water_consumption.apps.WaterConsumptionConfig',
 ]
 
 

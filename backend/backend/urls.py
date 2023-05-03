@@ -25,6 +25,7 @@ urlpatterns = [
     # path('', include('home.urls')),
     path('api/users/', include('users.urls')),
     path('api/association/', include('association.urls')),
+    path('api/waterConsumption/', include('water_consumption.urls')),
 ]
 
 
