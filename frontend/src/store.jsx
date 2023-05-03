@@ -12,6 +12,7 @@ import {
   userUpdateProfileReducer,
   userUpdateReducer,
 } from "./reducers/userReducers";
+import { waterConsumptionReducer } from "./reducers/waterConsumptionReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   userDelete: userDeleteReducer,
 
   associationDetails: associationDetailsReducer,
+  waterConsumptionDetails: waterConsumptionReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

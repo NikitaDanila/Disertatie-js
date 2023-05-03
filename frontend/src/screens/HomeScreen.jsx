@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getAssociationDetails } from "../actions/associationActions";
+import { getWaterConsumptionDetails } from "../actions/waterConsumptionActions";
 import ChartWaterConsumption from "../components/ChartWaterConsumption";
 import ModalInfoAssociation from "../components/ModalInfoAssociation";
 import {
@@ -12,12 +14,23 @@ import {
 function HomeScreen() {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
 
   const associationDetails = useSelector((state) => state.associationDetails);
   const { loading, error, associations } = associationDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const waterConsumptionDetails = useSelector(
+    (state) => state.waterConsumptionDetails
+  );
+  const { consumption } = waterConsumptionDetails;
+  useEffect(() => {
+    if (!consumption || consumption.length === 0) {
+      dispatch(getWaterConsumptionDetails());
+    }
+  }, [dispatch, consumption, userInfo, navigateTo]);
 
   return (
     <Container fluid>
@@ -38,7 +51,7 @@ function HomeScreen() {
           onHide={() => setShowModal(false)}
         />
       </Row>
-      <ChartWaterConsumption />
+      <ChartWaterConsumption consumption={consumption} />
     </Container>
   );
 }

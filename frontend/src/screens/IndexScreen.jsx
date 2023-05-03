@@ -19,6 +19,11 @@ function IndexScreen() {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
+  useEffect(() => {
+    if (userInfo) {
+      navigateTo("/homepage");
+    }
+  });
   return (
     <>
       <Table borderless size="sm">
