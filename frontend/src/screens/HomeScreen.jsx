@@ -7,30 +7,31 @@ import { getAssociationDetails } from "../actions/associationActions";
 import { getWaterConsumptionDetails } from "../actions/waterConsumptionActions";
 import ChartWaterConsumption from "../components/ChartWaterConsumption";
 import ModalInfoAssociation from "../components/ModalInfoAssociation";
-import {
-  ASSOCIATION_DETAILS_REQUEST,
-  ASSOCIATION_DETAILS_SUCCESS,
-} from "../constants/associationConstants";
+
 function HomeScreen() {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
-  const associationDetails = useSelector((state) => state.associationDetails);
-  const { loading, error, associations } = associationDetails;
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const associationDetails = useSelector((state) => state.associationDetails);
+  const { loading, error, associations } = associationDetails;
 
   const waterConsumptionDetails = useSelector(
     (state) => state.waterConsumptionDetails
   );
   const { consumption } = waterConsumptionDetails;
+
   useEffect(() => {
-    if (!consumption || consumption.length === 0) {
+    if (!userInfo) {
+      navigateTo("/login");
+    }
+    if (!consumption) {
       dispatch(getWaterConsumptionDetails());
     }
-  }, [dispatch, consumption, userInfo, navigateTo]);
+  }, [userInfo, navigateTo, consumption, dispatch]);
 
   return (
     <Container fluid>
@@ -51,7 +52,7 @@ function HomeScreen() {
           onHide={() => setShowModal(false)}
         />
       </Row>
-      <ChartWaterConsumption consumption={consumption} />
+      <ChartWaterConsumption />
     </Container>
   );
 }

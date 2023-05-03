@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { faker } from "@faker-js/faker";
@@ -10,17 +11,11 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function ChartWaterConsumption(consumption) {
-  const obj = consumption["consumption"];
-  const arr = [];
-  for (const key in obj) {
-    arr.push(obj[key]);
-  }
-  const foo = arr.slice(1, 13);
-
+export default function ChartWaterConsumption() {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -62,7 +57,7 @@ export default function ChartWaterConsumption(consumption) {
     labels,
     datasets: [
       {
-        data: foo,
+        data: [],
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],

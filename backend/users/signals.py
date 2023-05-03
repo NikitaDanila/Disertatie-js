@@ -24,6 +24,7 @@ def createProfile(sender, instance, created, **kwargs):
             email=user.email,
             isAdmin=user.is_staff
         )
+        profile.save()
 
 
 @receiver(post_save, sender=User)

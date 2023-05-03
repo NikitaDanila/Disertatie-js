@@ -118,7 +118,7 @@ export const register =
     }
   };
 
-export const getUserDetails = (id) => async (dispatch, getState) => {
+export const getUserDetails = () => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_DETAILS_REQUEST,
@@ -133,7 +133,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/users/getProfile/${id}`, config);
+    const { data } = await axios.get(`/api/users/getProfile/`, config);
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
