@@ -8,5 +8,7 @@ urlpatterns = [
          views.getAssociationById, name='getAssociationById'),
     path('getAllAssociations/', views.getAllAssociation, name='getAllAssociation'),
     path('updateAssociation/<str:pk>',
-         views.updateAssociation, name='updateAssociation')
+         views.updateAssociation, name='updateAssociation'),
+    path('deleteAssociation/<str:pk>',
+         views.deleteAssociation, name='deleteAssociation')
 ]

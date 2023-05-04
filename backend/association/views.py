@@ -56,3 +56,11 @@ def updateAssociation(request, pk):
 
     serializer = AssociationSerializer(association, many=False)
     return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
+def deleteAssociation(request, pk):
+    association = Association.objects.get(id=pk)
+    association.delete()
+    return Response('Association was deleted')

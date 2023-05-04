@@ -6,6 +6,9 @@ import {
   ASSOCIATION_BY_ID_FAIL,
   ASSOCIATION_BY_ID_REQUEST,
   ASSOCIATION_BY_ID_SUCCESS,
+  ASSOCIATION_DELETE_FAIL,
+  ASSOCIATION_DELETE_REQUEST,
+  ASSOCIATION_DELETE_SUCCESS,
   ASSOCIATION_DETAILS_FAIL,
   ASSOCIATION_DETAILS_REQUEST,
   ASSOCIATION_DETAILS_SUCCESS,
@@ -72,6 +75,22 @@ export const associationUpdateReducer = (state = {}, action) => {
       return { loading: false, association: action.payload };
 
     case ASSOCIATION_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const associationDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ASSOCIATION_DELETE_REQUEST:
+      return { loading: true };
+
+    case ASSOCIATION_DELETE_SUCCESS:
+      return { loading: false, success: true };
+
+    case ASSOCIATION_DELETE_FAIL:
       return { loading: false, error: action.payload };
 
     default:

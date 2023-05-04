@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  deleteAssociation,
   getAssociationDetails,
   getAssociationDetailsById,
   getAssociationsList,
@@ -27,6 +28,11 @@ function AssociationListScreen() {
     }
   }, [dispatch, userInfo]);
 
+  const deleteHandler = (id) => {
+    if (window.confirm("Delete permanently?")) {
+      dispatch(deleteAssociation(id));
+    }
+  };
   return (
     <Container>
       <h1>Associations</h1>
@@ -70,7 +76,11 @@ function AssociationListScreen() {
                 >
                   <i className="fas fa-edit"></i>
                 </Button>
-                <Button variant="danger" className="btn-sm m-2">
+                <Button
+                  variant="danger"
+                  className="btn-sm m-2"
+                  onClick={() => deleteHandler(association.id)}
+                >
                   <i className="fas fa-trash"></i>
                 </Button>
               </td>
