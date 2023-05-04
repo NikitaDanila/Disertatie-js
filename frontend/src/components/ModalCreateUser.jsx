@@ -3,17 +3,28 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  getAssociationDetails,
+  getAssociationsList,
+} from "../actions/associationActions";
 import { adminRegister } from "../actions/userActions";
 
 function ModalCreateUser(props) {
   const [first_name, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
   const [last_name, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [apartment_number, setApartmentNumber] = useState("");
+  const [mobile_number, setMobileNumber] = useState("");
+  const [foo, setFoo] = useState(null);
   const [password, setPassword] = useState("*2369fF^$");
 
   const dispatch = useDispatch();
 
   const userUpdate = useSelector((state) => state.userUpdate);
+
+  const associationsList = useSelector((state) => state.associationsList);
+  const { associations } = associationsList;
 
   const {
     error: errorUpdate,
@@ -23,7 +34,17 @@ function ModalCreateUser(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(adminRegister(first_name, last_name, email, password));
+    dispatch(
+      adminRegister({
+        first_name,
+        last_name,
+        email,
+        isAdmin,
+        mobile_number,
+        apartment_number,
+        foo,
+      })
+    );
   };
   return (
     <Modal {...props}>
@@ -61,7 +82,7 @@ function ModalCreateUser(props) {
                 onChange={(e) => setEmail(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            {/* <Form.Group controlId="apartment_number">
+            <Form.Group controlId="apartment_number">
               <Form.Label>Apartment Number</Form.Label>
               <Form.Control
                 value={apartment_number}
@@ -75,6 +96,17 @@ function ModalCreateUser(props) {
                 onChange={(e) => setMobileNumber(e.target.value)}
               ></Form.Control>
             </Form.Group>
+            <Form.Group>
+              <Form.Label>Association</Form.Label>
+              <Form.Select required onChange={(e) => setFoo(e.target.value)}>
+                <option>Choose an Association</option>
+                {associations.map((association) => (
+                  <option key={association.id} value={association.id}>
+                    {association.name}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
             <Form.Group controlId="isAdmin">
               <Form.Check
                 type="checkbox"
@@ -82,11 +114,11 @@ function ModalCreateUser(props) {
                 checked={isAdmin}
                 onChange={(e) => setIsAdmin(e.target.checked)}
               ></Form.Check>
-            </Form.Group> */}
+            </Form.Group>
           </Modal.Body>
           <Modal.Footer>
             <Button type="submit" variant="outline-dark" onClick={props.onHide}>
-              Create
+              Update
             </Button>
           </Modal.Footer>
         </Modal.Dialog>
