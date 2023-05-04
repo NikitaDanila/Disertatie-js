@@ -8,7 +8,8 @@ class Association(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False)
     email = models.EmailField(max_length=200, null=False, blank=False)
     phone_number = models.CharField(max_length=10, null=False, blank=False)
-    schedule_of_receipts = models.DateTimeField(null=False, blank=True)
+    schedule_of_receipts = models.CharField(
+        max_length=200, null=False, blank=True, default='00/00/0000 - 00:00')
     address_of_collection = models.CharField(
         max_length=500, null=False, blank=False)
     bank_iban = models.CharField(max_length=20, null=False, blank=False)

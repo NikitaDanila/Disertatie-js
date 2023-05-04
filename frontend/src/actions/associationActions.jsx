@@ -10,6 +10,9 @@ import {
   ASSOCIATION_DETAILS_FAIL,
   ASSOCIATION_DETAILS_REQUEST,
   ASSOCIATION_DETAILS_SUCCESS,
+  ASSOCIATION_UPDATE_FAIL,
+  ASSOCIATION_UPDATE_REQUEST,
+  ASSOCIATION_UPDATE_SUCCESS,
 } from "../constants/associationConstants";
 
 export const getAssociationDetails = (id) => async (dispatch, getState) => {
@@ -108,3 +111,38 @@ export const getAssociationsList = () => async (dispatch, getState) => {
     });
   }
 };
+
+export const updateAssociationDetails =
+  (association) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: ASSOCIATION_UPDATE_REQUEST,
+      });
+      const {
+        userLogin: { userInfo },
+      } = getState();
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      const { data } = await axios.put(
+        `/api/association/updateAssociation/${association.id}`,
+        association,
+        config
+      );
+      dispatch({
+        type: ASSOCIATION_UPDATE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ASSOCIATION_UPDATE_FAIL,
+        payload:
+          error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+      });
+    }
+  };

@@ -9,9 +9,11 @@ import {
   getAssociationsList,
 } from "../actions/associationActions.jsx";
 import ModalInfoAssociation from "../components/ModalInfoAssociation";
+import ModalUpdateAssociation from "../components/ModalUpdateAssociation.jsx";
 function AssociationListScreen() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -58,7 +60,14 @@ function AssociationListScreen() {
                 >
                   <i className="fas fa-eye"></i>
                 </Button>
-                <Button variant="light" className="btn-sm m-2">
+                <Button
+                  variant="light"
+                  className="btn-sm m-2"
+                  onClick={() => {
+                    setShowEditModal(true);
+                    dispatch(getAssociationDetailsById(association.id));
+                  }}
+                >
                   <i className="fas fa-edit"></i>
                 </Button>
                 <Button variant="danger" className="btn-sm m-2">
@@ -72,6 +81,10 @@ function AssociationListScreen() {
       <ModalInfoAssociation
         show={showModal}
         onHide={() => setShowModal(false)}
+      />
+      <ModalUpdateAssociation
+        show={showEditModal}
+        onHide={() => setShowEditModal(!showEditModal)}
       />
     </Container>
   );

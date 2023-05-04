@@ -77,7 +77,6 @@ function UserListScreen() {
                 )}
               </td>
               <td style={{ textAlign: "center" }}>
-                {/* <LinkContainer to={`/admin/user/${user.id}/edit`}> */}
                 <Button
                   id="btn"
                   variant="light"
@@ -89,7 +88,7 @@ function UserListScreen() {
                 >
                   <i className="fas fa-edit"></i>
                 </Button>
-                {/* </LinkContainer> */}
+
                 <Button
                   variant="danger"
                   className="btn-sm"

@@ -32,3 +32,27 @@ def getAllAssociation(request):
     association = Association.objects.all()
     serializer = AssociationSerializer(association, many=True)
     return Response(serializer.data)
+
+
+@api_view(['PUT', 'GET'])
+@permission_classes([IsAdminUser])
+def updateAssociation(request, pk):
+    association = Association.objects.get(id=pk)
+    data = request.data
+
+    association.name = data['name']
+    association.email = data['email']
+    association.phone_number = data['phone']
+    association.schedule_of_receipts = data['schedule']
+    association.address_of_collection = data['addressOfCollection']
+    association.bank_iban = data['iban']
+    association.fiscal_code = data['fiscalCode']
+    association.address = data['address']
+    association.president = data['president']
+    association.administrator = data['administrator']
+    association.censor = data['censor']
+
+    association.save()
+
+    serializer = AssociationSerializer(association, many=False)
+    return Response(serializer.data)

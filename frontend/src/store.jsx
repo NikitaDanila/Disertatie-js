@@ -5,6 +5,7 @@ import thunk from "redux-thunk";
 import {
   associationDetailsByIdReducer,
   associationDetailsReducer,
+  associationUpdateReducer,
   associationsListReducer,
 } from "./reducers/associationReducers";
 import {
@@ -30,6 +31,7 @@ const reducer = combineReducers({
   associationDetails: associationDetailsReducer,
   associationDetailsById: associationDetailsByIdReducer,
   associationsList: associationsListReducer,
+  associationUpdate: associationUpdateReducer,
 
   waterConsumptionDetails: waterConsumptionReducer,
 });

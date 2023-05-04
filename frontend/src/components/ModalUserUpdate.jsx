@@ -9,7 +9,7 @@ import {
   getAssociationDetails,
   getAssociationsList,
 } from "../actions/associationActions";
-import { getUserDetails, updateUser } from "../actions/userActions";
+import { getUserDetails, listUsers, updateUser } from "../actions/userActions";
 import { USER_UPDATE_RESET } from "../constants/userConstants";
 
 function ModalUserUpdate(props) {
@@ -71,6 +71,7 @@ function ModalUserUpdate(props) {
         foo,
       })
     );
+    dispatch(listUsers());
   };
   return (
     <Modal {...props}>

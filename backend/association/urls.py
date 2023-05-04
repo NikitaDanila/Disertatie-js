@@ -6,5 +6,7 @@ urlpatterns = [
          views.getAssociation, name='getAssociation'),
     path('getAssociationById/<str:pk>/',
          views.getAssociationById, name='getAssociationById'),
-    path('getAllAssociations/', views.getAllAssociation, name='getAllAssociation')
+    path('getAllAssociations/', views.getAllAssociation, name='getAllAssociation'),
+    path('updateAssociation/<str:pk>',
+         views.updateAssociation, name='updateAssociation')
 ]

@@ -9,6 +9,9 @@ import {
   ASSOCIATION_DETAILS_FAIL,
   ASSOCIATION_DETAILS_REQUEST,
   ASSOCIATION_DETAILS_SUCCESS,
+  ASSOCIATION_UPDATE_FAIL,
+  ASSOCIATION_UPDATE_REQUEST,
+  ASSOCIATION_UPDATE_SUCCESS,
 } from "../constants/associationConstants";
 
 export const associationDetailsReducer = (state = {}, action) => {
@@ -53,6 +56,22 @@ export const associationsListReducer = (
       return { loading: false, associations: action.payload };
 
     case ASSOCIATIONS_LIST_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const associationUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ASSOCIATION_UPDATE_REQUEST:
+      return { loading: true };
+
+    case ASSOCIATION_UPDATE_SUCCESS:
+      return { loading: false, association: action.payload };
+
+    case ASSOCIATION_UPDATE_FAIL:
       return { loading: false, error: action.payload };
 
     default:
