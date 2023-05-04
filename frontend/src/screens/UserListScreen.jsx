@@ -2,17 +2,20 @@
 /* eslint-disable no-unused-vars */
 
 import React, { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Col, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, getUserDetails, listUsers } from "../actions/userActions";
 import Message from "../components/Message";
+import ModalCreateUser from "../components/ModalCreateUser";
 import UserUpdateModal from "../components/UserUpdateModal";
 
 function UserListScreen() {
   const [modalShow, setModalShow] = useState(false);
+  const [createModalShow, setCreateModalShow] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [usersLength, setUsersLength] = useState(0);
   let navigateTo = useNavigate();
   const dispatch = useDispatch();
 
@@ -40,7 +43,10 @@ function UserListScreen() {
   };
   return (
     <>
-      <h1>Users</h1>
+      <Row>
+        <h1>Users</h1>
+      </Row>
+
       <Table striped bordered hover responsive className="table-sm">
         <thead style={{ textAlign: "center" }}>
           <tr>
@@ -48,7 +54,14 @@ function UserListScreen() {
             <th>FULL NAME</th>
             <th>EMAIL</th>
             <th>ADMIN</th>
-            <th></th>
+            <th>
+              <Button
+                className="btn-sm"
+                onClick={() => setCreateModalShow(true)}
+              >
+                Create New User
+              </Button>
+            </th>
           </tr>
         </thead>
 
@@ -97,6 +110,10 @@ function UserListScreen() {
           userid={userId}
         />
       </Table>
+      <ModalCreateUser
+        show={createModalShow}
+        onHide={() => setCreateModalShow(false)}
+      />
     </>
   );
 }

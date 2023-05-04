@@ -104,9 +104,9 @@ def getProfiles(request):
 
 @ api_view(['GET'])
 @ permission_classes([IsAuthenticated])
-def getProfile(request):
+def getProfile(request, pk):
     user = request.user
-    profile = Profile.objects.get(user=user.id)
+    profile = Profile.objects.get(user=pk)
     serializer = ProfileSerializer(profile, many=False)
     return Response(serializer.data)
 

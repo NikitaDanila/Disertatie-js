@@ -14,8 +14,39 @@ import {
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getUserDetails } from "../actions/userActions";
+import { getWaterConsumptionDetails } from "../actions/waterConsumptionActions";
 
-export default function ChartWaterConsumption() {
+export default function ChartWaterConsumption(props) {
+  const dispatch = useDispatch();
+  const navigateTo = useNavigate();
+  let consumptionArray = [];
+  const [dataArray, setDataArray] = useState([]);
+  let waterConsumptionDetails = useSelector(
+    (state) => state.waterConsumptionDetails
+  );
+  const { consumption } = waterConsumptionDetails;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
+
+  // console.log(consumptionArray);
+
+  // useEffect(() => {
+  //   //   if (!user || !user.first_name || userInfo.id != user.user) {
+  //   //     dispatch(getUserDetails());
+  //   //   }
+  //   //   if (!consumption || consumption.id != user.profile_id) {
+  //   //     // dispatch(getWaterConsumptionDetails());
+  //   //   } else {
+  //   //     consumptionArray = Object.values(consumption);
+  //   //   }
+  // });
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -57,7 +88,7 @@ export default function ChartWaterConsumption() {
     labels,
     datasets: [
       {
-        data: [],
+        data: consumptionArray.slice(1, 13),
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],

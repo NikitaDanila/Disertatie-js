@@ -117,8 +117,46 @@ export const register =
       });
     }
   };
+export const adminRegister =
+  (first_name, last_name, email, password) => async (dispatch) => {
+    try {
+      dispatch({
+        type: USER_REGISTER_REQUEST,
+      });
 
-export const getUserDetails = () => async (dispatch, getState) => {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const { data } = await axios.post(
+        "/api/users/register/",
+        {
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          password: password,
+        },
+        config
+      );
+
+      dispatch({
+        type: USER_REGISTER_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_REGISTER_FAIL,
+        payload:
+          error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+      });
+    }
+  };
+
+export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_DETAILS_REQUEST,
@@ -133,7 +171,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/users/getProfile/`, config);
+    const { data } = await axios.get(`/api/users/getProfile/${id}`, config);
 
     dispatch({
       type: USER_DETAILS_SUCCESS,

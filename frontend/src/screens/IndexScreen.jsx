@@ -42,7 +42,7 @@ function IndexScreen() {
                       style={{ width: "150px", height: "150px" }}
                       src="https://www.e-bloc.ro/images/chart_small.png"
                     />
-                    <Card.Text>
+                    <Card.Text as="div">
                       <ul style={{ marginLeft: "", textAlign: "left" }}>
                         <li>detalii întreţinere</li>
                         <li>documente scanate</li>

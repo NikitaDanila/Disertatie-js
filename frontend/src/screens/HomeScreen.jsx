@@ -4,6 +4,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAssociationDetails } from "../actions/associationActions";
+import { getUserDetails } from "../actions/userActions";
 import { getWaterConsumptionDetails } from "../actions/waterConsumptionActions";
 import ChartWaterConsumption from "../components/ChartWaterConsumption";
 import ModalInfoAssociation from "../components/ModalInfoAssociation";
@@ -16,6 +17,9 @@ function HomeScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  // const userDetails = useSelector((state) => state.userDetails);
+  // const { user } = userDetails;
+
   const associationDetails = useSelector((state) => state.associationDetails);
   const { loading, error, associations } = associationDetails;
 
@@ -23,16 +27,11 @@ function HomeScreen() {
     (state) => state.waterConsumptionDetails
   );
   const { consumption } = waterConsumptionDetails;
-
   useEffect(() => {
     if (!userInfo) {
       navigateTo("/login");
     }
-    if (!consumption) {
-      dispatch(getWaterConsumptionDetails());
-    }
-  }, [userInfo, navigateTo, consumption, dispatch]);
-
+  });
   return (
     <Container fluid>
       <Row className="justify-content-md-end">
@@ -52,7 +51,9 @@ function HomeScreen() {
           onHide={() => setShowModal(false)}
         />
       </Row>
-      <ChartWaterConsumption />
+      <Row>
+        <ChartWaterConsumption consumption={consumption} />
+      </Row>
     </Container>
   );
 }

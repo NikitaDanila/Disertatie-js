@@ -1,28 +1,17 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
+import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { getUserDetails, updateUser } from "../actions/userActions";
-import { USER_UPDATE_RESET } from "../constants/userConstants";
+import { adminRegister } from "../actions/userActions";
 
-function UserUpdateModal(props, userid) {
-  const { id } = useParams();
-  let navigateTo = useNavigate();
-
+function ModalCreateUser(props) {
   const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [apartment_number, setApartmentNumber] = useState("");
-  const [mobile_number, setMobileNumber] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [password, setPassword] = useState("*2369fF^$");
 
   const dispatch = useDispatch();
-
-  const userDetails = useSelector((state) => state.userDetails);
-  const { error, loading, user } = userDetails;
 
   const userUpdate = useSelector((state) => state.userUpdate);
 
@@ -32,37 +21,16 @@ function UserUpdateModal(props, userid) {
     success: successUpdate,
   } = userUpdate;
 
-  useEffect(() => {
-    if (user) {
-      setFirstName(user.first_name);
-      setLastName(user.last_name);
-      setEmail(user.email);
-      setIsAdmin(user.isAdmin);
-      setApartmentNumber(user.apartment_number);
-      setMobileNumber(user.mobile_number);
-    }
-  }, [dispatch, user]);
-
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      updateUser({
-        id: user.user,
-        first_name,
-        last_name,
-        email,
-        isAdmin,
-        mobile_number,
-        apartment_number,
-      })
-    );
+    dispatch(adminRegister(first_name, last_name, email, password));
   };
   return (
     <Modal {...props}>
       <Form onSubmit={submitHandler}>
         <Modal.Dialog>
           <Modal.Header closeButton>
-            <Modal.Title>Update User</Modal.Title>
+            <Modal.Title>Create User</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -93,7 +61,7 @@ function UserUpdateModal(props, userid) {
                 onChange={(e) => setEmail(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <Form.Group controlId="apartment_number">
+            {/* <Form.Group controlId="apartment_number">
               <Form.Label>Apartment Number</Form.Label>
               <Form.Control
                 value={apartment_number}
@@ -114,11 +82,11 @@ function UserUpdateModal(props, userid) {
                 checked={isAdmin}
                 onChange={(e) => setIsAdmin(e.target.checked)}
               ></Form.Check>
-            </Form.Group>
+            </Form.Group> */}
           </Modal.Body>
           <Modal.Footer>
             <Button type="submit" variant="outline-dark" onClick={props.onHide}>
-              Update
+              Create
             </Button>
           </Modal.Footer>
         </Modal.Dialog>
@@ -127,4 +95,4 @@ function UserUpdateModal(props, userid) {
   );
 }
 
-export default UserUpdateModal;
+export default ModalCreateUser;

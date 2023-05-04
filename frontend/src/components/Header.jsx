@@ -20,7 +20,11 @@ function Header() {
           <LinkContainer to="/">
             <Navbar.Brand>E-Bloc</Navbar.Brand>
           </LinkContainer>
-
+          <Nav>
+            <LinkContainer to="/homepage">
+              <Nav.Link className="">Home</Nav.Link>
+            </LinkContainer>
+          </Nav>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
             id="basic-navbar-nav"
