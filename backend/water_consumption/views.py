@@ -18,3 +18,10 @@ def getWaterConsumption(request):
         profile__profile_id=profile.profile_id)
     serializer = WaterConsumptionSerializer(waterConsumption, many=False)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getAllWaterConsumption(request):
+    waterConsumption = WaterConsumption.objects.all()
+    serializer = WaterConsumptionSerializer(waterConsumption, many=True)
+    return Response(serializer.data)

@@ -6,6 +6,7 @@ from users.models import Profile
 class WaterConsumption(models.Model):
     profile = models.OneToOneField(
         Profile, on_delete=models.CASCADE, null=True, blank=True)
+    id = models.IntegerField(primary_key=True, editable=False)
     january = models.FloatField(null=True, blank=True, default=0)
     february = models.FloatField(null=True, blank=True, default=0)
     march = models.FloatField(null=True, blank=True, default=0)

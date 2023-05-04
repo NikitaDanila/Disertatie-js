@@ -12,4 +12,5 @@ def createWaterConsumptionEntry(sender, instance, created, **kwargs):
         profile = instance
         water_consumption = WaterConsumption.objects.create(
             profile=profile,
+            id=profile.profile_id,
         )
