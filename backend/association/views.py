@@ -11,10 +11,17 @@ from .serializers import AssociationSerializer
 
 
 @api_view(['GET'])
-def getAssociation(request):
-    user = request.user
-    profile = Profile.objects.get(user=user.id)
+def getAssociation(request, pk):
+    profile = Profile.objects.get(profile_id=pk)
     association = Association.objects.get(
         profile__profile_id=profile.profile_id)
     serializer = AssociationSerializer(association, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def getAllAssociation(request):
+    association = Association.objects.all()
+    serializer = AssociationSerializer(association, many=True)
     return Response(serializer.data)

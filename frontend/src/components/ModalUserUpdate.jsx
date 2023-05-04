@@ -1,16 +1,19 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Dropdown, Form, FormGroup } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import {
+  getAssociationDetails,
+  getAssociationsList,
+} from "../actions/associationActions";
 import { getUserDetails, updateUser } from "../actions/userActions";
 import { USER_UPDATE_RESET } from "../constants/userConstants";
 
-function UserUpdateModal(props, userid) {
-  const { id } = useParams();
-  let navigateTo = useNavigate();
+function ModalUserUpdate(props) {
+  const navigateTo = useNavigate();
 
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
@@ -18,11 +21,18 @@ function UserUpdateModal(props, userid) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [apartment_number, setApartmentNumber] = useState("");
   const [mobile_number, setMobileNumber] = useState("");
+  const [foo, setFoo] = useState("");
 
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.userDetails);
   const { error, loading, user } = userDetails;
+
+  const associationsList = useSelector((state) => state.associationsList);
+  const { associations } = associationsList;
+
+  const associationDetails = useSelector((state) => state.associationDetails);
+  const { association } = associationDetails;
 
   const userUpdate = useSelector((state) => state.userUpdate);
 
@@ -40,6 +50,10 @@ function UserUpdateModal(props, userid) {
       setIsAdmin(user.isAdmin);
       setApartmentNumber(user.apartment_number);
       setMobileNumber(user.mobile_number);
+    }
+    if (user.profile_id) {
+      dispatch(getAssociationDetails(user.profile_id));
+      dispatch(getAssociationsList());
     }
   }, [dispatch, user]);
 
@@ -107,6 +121,21 @@ function UserUpdateModal(props, userid) {
                 onChange={(e) => setMobileNumber(e.target.value)}
               ></Form.Control>
             </Form.Group>
+            <FormGroup>
+              <Form.Label>Association</Form.Label>
+              {association ? (
+                <Form.Control value={association.name}></Form.Control>
+              ) : (
+                <Form.Select required onChange={(e) => setFoo(e.target.value)}>
+                  <option>Choose an Association</option>
+                  {associations.map((association) => (
+                    <option key={association.id} value={association.id}>
+                      {association.name}
+                    </option>
+                  ))}
+                </Form.Select>
+              )}
+            </FormGroup>
             <Form.Group controlId="isAdmin">
               <Form.Check
                 type="checkbox"
@@ -127,4 +156,4 @@ function UserUpdateModal(props, userid) {
   );
 }
 
-export default UserUpdateModal;
+export default ModalUserUpdate;

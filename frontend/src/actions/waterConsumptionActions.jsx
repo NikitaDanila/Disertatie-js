@@ -3,6 +3,7 @@ import {
   WATER_CONSUMPTION_FAIL,
   WATER_CONSUMPTION_REQUEST,
   WATER_CONSUMPTION_SUCCESS,
+  WATER_CONSUMPTION_RESET,
 } from "../constants/waterConsumptionConstants";
 
 import axios from "axios";

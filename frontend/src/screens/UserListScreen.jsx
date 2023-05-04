@@ -9,14 +9,12 @@ import { useNavigate } from "react-router-dom";
 import { deleteUser, getUserDetails, listUsers } from "../actions/userActions";
 import Message from "../components/Message";
 import ModalCreateUser from "../components/ModalCreateUser";
-import UserUpdateModal from "../components/UserUpdateModal";
+import UserUpdateModal from "../components/ModalUserUpdate";
 
 function UserListScreen() {
   const [modalShow, setModalShow] = useState(false);
   const [createModalShow, setCreateModalShow] = useState(false);
-  const [userId, setUserId] = useState(null);
-  const [usersLength, setUsersLength] = useState(0);
-  let navigateTo = useNavigate();
+  const navigateTo = useNavigate();
   const dispatch = useDispatch();
 
   const userList = useSelector((state) => state.userList);
@@ -85,7 +83,6 @@ function UserListScreen() {
                   variant="light"
                   className="btn-sm"
                   onClick={() => {
-                    setUserId(user.id);
                     setModalShow(true);
                     dispatch(getUserDetails(user.id));
                   }}
@@ -104,11 +101,7 @@ function UserListScreen() {
             </tr>
           ))}
         </tbody>
-        <UserUpdateModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          userid={userId}
-        />
+        <UserUpdateModal show={modalShow} onHide={() => setModalShow(false)} />
       </Table>
       <ModalCreateUser
         show={createModalShow}

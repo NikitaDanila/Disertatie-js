@@ -21,8 +21,7 @@ import { getWaterConsumptionDetails } from "../actions/waterConsumptionActions";
 export default function ChartWaterConsumption(props) {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
-  let consumptionArray = [];
-  const [dataArray, setDataArray] = useState([]);
+
   let waterConsumptionDetails = useSelector(
     (state) => state.waterConsumptionDetails
   );
@@ -36,16 +35,15 @@ export default function ChartWaterConsumption(props) {
 
   // console.log(consumptionArray);
 
-  // useEffect(() => {
-  //   //   if (!user || !user.first_name || userInfo.id != user.user) {
-  //   //     dispatch(getUserDetails());
-  //   //   }
-  //   //   if (!consumption || consumption.id != user.profile_id) {
-  //   //     // dispatch(getWaterConsumptionDetails());
-  //   //   } else {
-  //   //     consumptionArray = Object.values(consumption);
-  //   //   }
-  // });
+  useEffect(() => {
+    if (!consumption) {
+      // dispatch(getWaterConsumptionDetails());
+      console.log("dispatched");
+    }
+  });
+
+  let consumptionArray = [];
+  // consumptionArray = Object.values(consumption);
 
   ChartJS.register(
     CategoryScale,
