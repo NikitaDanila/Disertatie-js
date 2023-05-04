@@ -18,8 +18,10 @@ function ModalInfoAssociation(props) {
   const [administrator, setAdministrator] = useState("");
   const [censor, setCensor] = useState("");
 
-  const associationDetails = useSelector((state) => state.associationDetails);
-  const { loading, error, association } = associationDetails;
+  const associationDetailsById = useSelector(
+    (state) => state.associationDetailsById
+  );
+  const { loading, error, association } = associationDetailsById;
 
   useEffect(() => {
     if (association) {

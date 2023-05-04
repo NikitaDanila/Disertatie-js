@@ -61,6 +61,9 @@ function Header() {
                   <LinkContainer to="/admin/userlist">
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
+                  <LinkContainer to="/admin/associationList">
+                    <NavDropdown.Item>Association</NavDropdown.Item>
+                  </LinkContainer>
                 </NavDropdown>
               )}
             </Nav>

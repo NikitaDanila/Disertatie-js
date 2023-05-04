@@ -20,6 +20,13 @@ def getAssociation(request, pk):
 
 
 @api_view(['GET'])
+def getAssociationById(request, pk):
+    association = Association.objects.get(id=pk)
+    serializer = AssociationSerializer(association, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
 @permission_classes([IsAdminUser])
 def getAllAssociation(request):
     association = Association.objects.all()

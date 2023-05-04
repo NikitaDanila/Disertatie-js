@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import thunk from "redux-thunk";
 import {
+  associationDetailsByIdReducer,
   associationDetailsReducer,
   associationsListReducer,
 } from "./reducers/associationReducers";
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   userDelete: userDeleteReducer,
 
   associationDetails: associationDetailsReducer,
+  associationDetailsById: associationDetailsByIdReducer,
   associationsList: associationsListReducer,
 
   waterConsumptionDetails: waterConsumptionReducer,
