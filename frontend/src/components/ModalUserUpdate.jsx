@@ -21,7 +21,7 @@ function ModalUserUpdate(props) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [apartment_number, setApartmentNumber] = useState("");
   const [mobile_number, setMobileNumber] = useState("");
-  const [foo, setFoo] = useState("");
+  const [foo, setFoo] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -51,7 +51,7 @@ function ModalUserUpdate(props) {
       setApartmentNumber(user.apartment_number);
       setMobileNumber(user.mobile_number);
     }
-    if (user.profile_id) {
+    if (user.profile_id && user.association !== null) {
       dispatch(getAssociationDetails(user.profile_id));
       dispatch(getAssociationsList());
     }
@@ -68,6 +68,7 @@ function ModalUserUpdate(props) {
         isAdmin,
         mobile_number,
         apartment_number,
+        foo,
       })
     );
   };
@@ -124,7 +125,7 @@ function ModalUserUpdate(props) {
             <FormGroup>
               <Form.Label>Association</Form.Label>
               {association ? (
-                <Form.Control value={association.name}></Form.Control>
+                <Form.Control value={association.name} readOnly></Form.Control>
               ) : (
                 <Form.Select required onChange={(e) => setFoo(e.target.value)}>
                   <option>Choose an Association</option>

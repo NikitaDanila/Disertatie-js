@@ -1,16 +1,17 @@
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
-
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework.response import Response
-from rest_framework import status
+from association.models import Association
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from .serializer import ProfileSerializer, UserSerializer, UserSerializerWithToken
 from .models import Profile
 
-from .serializer import ProfileSerializer, UserSerializer, UserSerializerWithToken
-
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.decorators import api_view, permission_classes
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+import sys
+sys.path.append("..")
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -79,6 +80,10 @@ def updateUser(request, pk):
 
     profile.apartment_number = data['apartment_number']
     profile.mobile_number = data['mobile_number']
+    if (data['foo'] != None):
+        print('entered')
+        profile.association = Association.objects.get(
+            id=data['foo'])
 
     profile.save()
     user.save()
