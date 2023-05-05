@@ -6,6 +6,7 @@ import {
   associationDeleteReducer,
   associationDetailsByIdReducer,
   associationDetailsReducer,
+  associationRegisterReducer,
   associationUpdateReducer,
   associationsListReducer,
 } from "./reducers/associationReducers";
@@ -34,6 +35,7 @@ const reducer = combineReducers({
   associationsList: associationsListReducer,
   associationUpdate: associationUpdateReducer,
   associationDelete: associationDeleteReducer,
+  associationRegister: associationRegisterReducer,
 
   waterConsumptionDetails: waterConsumptionReducer,
 });

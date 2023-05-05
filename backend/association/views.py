@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
+from rest_framework import status
 
 
 from .models import Association
@@ -64,3 +65,29 @@ def deleteAssociation(request, pk):
     association = Association.objects.get(id=pk)
     association.delete()
     return Response('Association was deleted')
+
+
+@api_view(['POST'])
+@permission_classes([IsAdminUser])
+def registerAssociation(request):
+
+    data = request.data
+    try:
+        association = Association.objects.create(
+            name=data['name'],
+            email=data['email'],
+            phone_number=data['phone'],
+            schedule_of_receipts=data['schedule'],
+            address_of_collection=data['addressOfCollection'],
+            bank_iban=data['iban'],
+            fiscal_code=data['fiscalCode'],
+            address=data['address'],
+            president=data['president'],
+            administrator=data['administrator'],
+            censor=data['censor'],
+        )
+        serializer = AssociationSerializer(association, many=False)
+        return Response(serializer.data)
+    except:
+        message = {'detail': 'Association with this email already exists'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)

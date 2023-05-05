@@ -10,11 +10,13 @@ import {
   getAssociationsList,
 } from "../actions/associationActions.jsx";
 import ModalInfoAssociation from "../components/ModalInfoAssociation";
+import ModalRegisterAssociation from "../components/ModalRegisterAssociation.jsx";
 import ModalUpdateAssociation from "../components/ModalUpdateAssociation.jsx";
 function AssociationListScreen() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -44,7 +46,9 @@ function AssociationListScreen() {
             <td>ADMINISTRATOR</td>
             <td>PRESIDENT</td>
             <td>
-              <Button>Add new</Button>
+              <Button onClick={() => setShowRegisterModal(!showRegisterModal)}>
+                Add new
+              </Button>
             </td>
           </tr>
         </thead>
@@ -57,6 +61,7 @@ function AssociationListScreen() {
               <td>{association.president}</td>
               <td>
                 <Button
+                  id="read"
                   variant="primary"
                   className="btn-sm m-2"
                   onClick={() => {
@@ -67,6 +72,7 @@ function AssociationListScreen() {
                   <i className="fas fa-eye"></i>
                 </Button>
                 <Button
+                  id="edit"
                   variant="light"
                   className="btn-sm m-2"
                   onClick={() => {
@@ -77,6 +83,7 @@ function AssociationListScreen() {
                   <i className="fas fa-edit"></i>
                 </Button>
                 <Button
+                  id="delete"
                   variant="danger"
                   className="btn-sm m-2"
                   onClick={() => deleteHandler(association.id)}
@@ -95,6 +102,10 @@ function AssociationListScreen() {
       <ModalUpdateAssociation
         show={showEditModal}
         onHide={() => setShowEditModal(!showEditModal)}
+      />
+      <ModalRegisterAssociation
+        show={showRegisterModal}
+        onHide={() => setShowRegisterModal(!showRegisterModal)}
       />
     </Container>
   );

@@ -10,5 +10,6 @@ urlpatterns = [
     path('updateAssociation/<str:pk>',
          views.updateAssociation, name='updateAssociation'),
     path('deleteAssociation/<str:pk>',
-         views.deleteAssociation, name='deleteAssociation')
+         views.deleteAssociation, name='deleteAssociation'),
+    path('registerAssociation/', views.registerAssociation, name='createAssociation')
 ]
