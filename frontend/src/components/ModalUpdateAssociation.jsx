@@ -25,29 +25,29 @@ function ModalUpdateAssociation(props) {
   const associationDetailsById = useSelector(
     (state) => state.associationDetailsById
   );
-  const { loading, error, association } = associationDetailsById;
+  const { loading, error, associationById } = associationDetailsById;
 
   useEffect(() => {
-    if (association) {
-      setName(association.name);
-      setEmail(association.email);
-      setPhone(association.phone_number);
-      setSchedule(association.schedule_of_receipts);
-      setIban(association.bank_iban);
-      setFiscalCode(association.fiscal_code);
-      setAddress(association.address);
-      setPresident(association.president);
-      setAdministrator(association.administrator);
-      setCensor(association.censor);
-      setAddressOfCollection(association.address_of_collection);
+    if (associationById) {
+      setName(associationById.name);
+      setEmail(associationById.email);
+      setPhone(associationById.phone_number);
+      setSchedule(associationById.schedule_of_receipts);
+      setIban(associationById.bank_iban);
+      setFiscalCode(associationById.fiscal_code);
+      setAddress(associationById.address);
+      setPresident(associationById.president);
+      setAdministrator(associationById.administrator);
+      setCensor(associationById.censor);
+      setAddressOfCollection(associationById.address_of_collection);
     }
-  }, [association]);
+  }, [associationById]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
       updateAssociationDetails({
-        id: association.id,
+        id: associationById.id,
         name,
         email,
         phone,

@@ -41,7 +41,7 @@ export const associationDetailsByIdReducer = (state = {}, action) => {
       return { loading: true };
 
     case ASSOCIATION_BY_ID_SUCCESS:
-      return { loading: false, association: action.payload };
+      return { loading: false, associationById: action.payload };
 
     case ASSOCIATION_BY_ID_FAIL:
       return { loading: false, error: action.payload };

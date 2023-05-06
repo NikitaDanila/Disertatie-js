@@ -10,7 +10,6 @@ import IndexScreen from "./screens/IndexScreen";
 import Login from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
-import UserEditScreen from "./screens/UserEditScreen";
 import UserListScreen from "./screens/UserListScreen";
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
             <Route path="/profile" element={<ProfileScreen />} />
 
             <Route path="/admin/userlist" element={<UserListScreen />} />
-            <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
             <Route
               path="/admin/associationList/"
               element={<AssociationListScreen />}
