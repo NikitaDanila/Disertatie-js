@@ -1,19 +1,24 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Button, Col, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
+import {
+  getAssociationDetails,
+  getAssociationDetailsById,
+} from "../actions/associationActions";
 import { deleteUser, getUserDetails, listUsers } from "../actions/userActions";
 import Message from "../components/Message";
 import ModalCreateUser from "../components/ModalCreateUser";
+import ModalInfoUser from "../components/ModalInfoUser";
 import UserUpdateModal from "../components/ModalUserUpdate";
-
 function UserListScreen() {
   const [modalShow, setModalShow] = useState(false);
   const [createModalShow, setCreateModalShow] = useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,6 +30,9 @@ function UserListScreen() {
 
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
+
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user: userDetailsUser } = userDetails;
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -38,6 +46,9 @@ function UserListScreen() {
     if (window.confirm("Delete permanently?")) {
       dispatch(deleteUser(id));
     }
+  };
+  const handleInfo = (id) => {
+    dispatch(getAssociationDetails(id));
   };
   return (
     <>
@@ -78,20 +89,33 @@ function UserListScreen() {
               </td>
               <td style={{ textAlign: "center" }}>
                 <Button
-                  id="btn"
+                  id="btn-view"
+                  className="btn btn-sm m-1"
+                  onClick={() => {
+                    dispatch(getUserDetails(user.id));
+                    setShowViewModal(!showViewModal);
+                    handleInfo(user.id);
+                  }}
+                >
+                  <i className="fas fa-eye"></i>
+                </Button>
+                <Button
+                  id="btn-edit"
                   variant="light"
-                  className="btn-sm"
+                  className="btn-sm m-1"
                   onClick={() => {
                     setModalShow(true);
                     dispatch(getUserDetails(user.id));
+                    handleInfo(user.id);
                   }}
                 >
                   <i className="fas fa-edit"></i>
                 </Button>
 
                 <Button
+                  id="btn-delete"
                   variant="danger"
-                  className="btn-sm"
+                  className="btn-sm m-1"
                   onClick={() => deleteHandler(user.id)}
                 >
                   <i className="fas fa-trash"></i>
@@ -105,6 +129,10 @@ function UserListScreen() {
       <ModalCreateUser
         show={createModalShow}
         onHide={() => setCreateModalShow(false)}
+      />
+      <ModalInfoUser
+        show={showViewModal}
+        onHide={() => setShowViewModal(!showViewModal)}
       />
     </>
   );

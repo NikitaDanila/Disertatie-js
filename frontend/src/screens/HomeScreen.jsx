@@ -40,7 +40,7 @@ function HomeScreen() {
           size="sm"
           onClick={() => {
             setShowModal(true);
-            dispatch(getAssociationDetails());
+            dispatch(getAssociationDetails(userInfo.id));
           }}
         >
           Informatii Asociatie

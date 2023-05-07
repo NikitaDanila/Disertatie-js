@@ -5,6 +5,7 @@ import {
   ASSOCIATIONS_LIST_SUCCESS,
   ASSOCIATION_BY_ID_FAIL,
   ASSOCIATION_BY_ID_REQUEST,
+  ASSOCIATION_BY_ID_RESET,
   ASSOCIATION_BY_ID_SUCCESS,
   ASSOCIATION_DELETE_FAIL,
   ASSOCIATION_DELETE_REQUEST,
@@ -41,10 +42,13 @@ export const associationDetailsByIdReducer = (state = {}, action) => {
       return { loading: true };
 
     case ASSOCIATION_BY_ID_SUCCESS:
-      return { loading: false, association: action.payload };
+      return { loading: false, associationById: action.payload };
 
     case ASSOCIATION_BY_ID_FAIL:
       return { loading: false, error: action.payload };
+
+    case ASSOCIATION_BY_ID_RESET:
+      return { associationById: {} };
 
     default:
       return state;

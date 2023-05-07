@@ -16,7 +16,6 @@ function ModalCreateUser(props) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [apartment_number, setApartmentNumber] = useState("");
   const [mobile_number, setMobileNumber] = useState("");
-  const [foo, setFoo] = useState(null);
   const [password, setPassword] = useState("*2369fF^$");
 
   const dispatch = useDispatch();
@@ -42,7 +41,6 @@ function ModalCreateUser(props) {
         isAdmin,
         mobile_number,
         apartment_number,
-        foo,
       })
     );
   };
@@ -98,7 +96,7 @@ function ModalCreateUser(props) {
             </Form.Group>
             <Form.Group>
               <Form.Label>Association</Form.Label>
-              <Form.Select required onChange={(e) => setFoo(e.target.value)}>
+              <Form.Select required onChange={(e) => null}>
                 <option>Choose an Association</option>
                 {associations.map((association) => (
                   <option key={association.id} value={association.id}>

@@ -3,9 +3,11 @@
 import { Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-function TableAssociationInfo() {
-  const associationDetails = useSelector((state) => state.associationDetails);
-  const { association } = associationDetails;
+function TableAssociationInfoById() {
+  const associationDetailsById = useSelector(
+    (state) => state.associationDetailsById
+  );
+  const { associationById } = associationDetailsById;
   return (
     <>
       <Table bordered striped hover>
@@ -16,7 +18,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.name : null}</td>
+            <td>{associationById ? associationById.name : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -26,7 +28,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.email : null}</td>
+            <td>{associationById ? associationById.email : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -36,7 +38,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.phone_number : null}</td>
+            <td>{associationById ? associationById.phone_number : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -46,7 +48,9 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.schedule : null}</td>
+            <td>
+              {associationById ? associationById.schedule_of_receipts : null}
+            </td>
           </tr>
         </tbody>
         <thead>
@@ -56,7 +60,9 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.addressOfCollection : null}</td>
+            <td>
+              {associationById ? associationById.address_of_collection : null}
+            </td>
           </tr>
         </tbody>
         <thead>
@@ -66,7 +72,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.iban : null}</td>
+            <td>{associationById ? associationById.bank_iban : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -76,7 +82,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.fiscalCode : null}</td>
+            <td>{associationById ? associationById.fiscal_code : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -86,7 +92,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.address : null}</td>
+            <td>{associationById ? associationById.address : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -96,7 +102,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.president : null}</td>
+            <td>{associationById ? associationById.president : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -106,7 +112,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.administrator : null}</td>
+            <td>{associationById ? associationById.administrator : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -116,7 +122,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.censor : null}</td>
+            <td>{associationById ? associationById.censor : null}</td>
           </tr>
         </tbody>
       </Table>
@@ -124,4 +130,4 @@ function TableAssociationInfo() {
   );
 }
 
-export default TableAssociationInfo;
+export default TableAssociationInfoById;

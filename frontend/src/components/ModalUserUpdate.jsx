@@ -52,7 +52,7 @@ function ModalUserUpdate(props) {
       setMobileNumber(user.mobile_number);
     }
     if (user.profile_id && user.association !== null) {
-      dispatch(getAssociationDetails(user.profile_id));
+      // dispatch(getAssociationDetails(user.profile_id));
       dispatch(getAssociationsList());
     }
   }, [dispatch, user]);
