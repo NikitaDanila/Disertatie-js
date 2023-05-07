@@ -3,17 +3,17 @@
 import { useEffect, useState } from "react";
 import { Modal, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import TableAssociationInfo from "./TableAssociationInfoById";
+import TableAssociationInfoById from "./TableAssociationInfoById";
 
-function ModalInfoAssociation(props) {
+function ModalInfoAssociationById(props) {
   return (
     <Modal show={props.show} onHide={props.onHide} scrollable="true" size="lg">
-      <Modal.Title>Informatii despre asociatie</Modal.Title>
+      <Modal.Title>Informatii despre asociatie By ID</Modal.Title>
       <Modal.Body>
-        <TableAssociationInfo />
+        <TableAssociationInfoById />
       </Modal.Body>
     </Modal>
   );
 }
 
-export default ModalInfoAssociation;
+export default ModalInfoAssociationById;

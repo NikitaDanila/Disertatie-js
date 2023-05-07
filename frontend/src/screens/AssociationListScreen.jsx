@@ -9,7 +9,7 @@ import {
   getAssociationDetailsById,
   getAssociationsList,
 } from "../actions/associationActions.jsx";
-import ModalInfoAssociation from "../components/ModalInfoAssociation";
+import ModalInfoAssociationById from "../components/ModalInfoAssociation";
 import ModalRegisterAssociation from "../components/ModalRegisterAssociation.jsx";
 import ModalUpdateAssociation from "../components/ModalUpdateAssociation.jsx";
 function AssociationListScreen() {
@@ -95,7 +95,7 @@ function AssociationListScreen() {
           ))}
         </tbody>
       </Table>
-      <ModalInfoAssociation
+      <ModalInfoAssociationById
         show={showModal}
         onHide={() => setShowModal(false)}
       />
