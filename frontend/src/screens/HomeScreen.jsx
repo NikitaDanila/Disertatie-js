@@ -31,7 +31,10 @@ function HomeScreen() {
     if (!userInfo) {
       navigateTo("/login");
     }
-  });
+    if (userInfo && !consumption) {
+      dispatch(getWaterConsumptionDetails());
+    }
+  }, [consumption]);
   return (
     <Container fluid>
       <Row className="justify-content-md-end">

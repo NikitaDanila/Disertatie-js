@@ -32,19 +32,8 @@ export default function ChartWaterConsumption(props) {
 
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
-
-  // console.log(consumptionArray);
-
-  useEffect(() => {
-    if (!consumption) {
-      // dispatch(getWaterConsumptionDetails());
-      console.log("dispatched");
-    }
-  });
-
   let consumptionArray = [];
-  // consumptionArray = Object.values(consumption);
-
+  consumptionArray = consumption ? Object.values(consumption) : [];
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -86,7 +75,7 @@ export default function ChartWaterConsumption(props) {
     labels,
     datasets: [
       {
-        data: consumptionArray.slice(1, 13),
+        data: consumption ? consumptionArray.slice(1, 13) : null,
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
