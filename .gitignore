@@ -159,3 +159,4 @@ views.txt
 migrations/
 
 secrets.py
+key.py

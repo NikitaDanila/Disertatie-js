@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Modal, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import TableAssociationInfo from "./TableAssociationInfoById";
+import TableAssociationInfo from "./TableAssociationInfo.jsx";
 
 function ModalInfoAssociation(props) {
   return (

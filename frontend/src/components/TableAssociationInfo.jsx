@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import { useEffect } from "react";
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function TableAssociationInfo() {
+  const dispatch = useDispatch();
   const associationDetails = useSelector((state) => state.associationDetails);
   const { association } = associationDetails;
   return (
