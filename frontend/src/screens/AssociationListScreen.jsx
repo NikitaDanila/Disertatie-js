@@ -97,7 +97,7 @@ function AssociationListScreen() {
       </Table>
       <ModalInfoAssociationById
         show={showModal}
-        onHide={() => setShowModal(false)}
+        onHide={() => setShowModal(!showModal)}
       />
       <ModalUpdateAssociation
         show={showEditModal}

@@ -19,7 +19,7 @@ function App() {
       <main>
         <Container>
           <Routes>
-            <Route path="/" element={<IndexScreen />} />
+            <Route exact path="/" element={<IndexScreen />} />
             <Route path="/homepage" element={<HomeScreen />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<RegisterScreen />} />

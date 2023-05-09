@@ -28,13 +28,14 @@ function HomeScreen() {
   );
   const { consumption } = waterConsumptionDetails;
   useEffect(() => {
-    if (!userInfo) {
+    if (!userInfo && !userInfo.username) {
       navigateTo("/login");
     }
-    if (userInfo && !consumption) {
+    if (userInfo.username && !consumption) {
       dispatch(getWaterConsumptionDetails());
     }
-  }, [consumption]);
+  }, [consumption, userInfo, navigateTo, dispatch]);
+
   return (
     <Container fluid>
       <Row className="justify-content-md-end">

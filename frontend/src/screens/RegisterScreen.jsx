@@ -26,7 +26,7 @@ function RegisterScreen() {
   const { error, loading, userInfo } = userRegister;
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && userInfo.username) {
       navigateTo("/profile");
     }
   });

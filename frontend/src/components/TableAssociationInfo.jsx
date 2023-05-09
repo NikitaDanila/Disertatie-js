@@ -48,7 +48,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.schedule : null}</td>
+            <td>{association ? association.schedule_of_receipts : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -58,7 +58,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.addressOfCollection : null}</td>
+            <td>{association ? association.address_of_collection : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -68,7 +68,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.iban : null}</td>
+            <td>{association ? association.bank_iban : null}</td>
           </tr>
         </tbody>
         <thead>
@@ -78,7 +78,7 @@ function TableAssociationInfo() {
         </thead>
         <tbody>
           <tr>
-            <td>{association ? association.fiscalCode : null}</td>
+            <td>{association ? association.fiscal_code : null}</td>
           </tr>
         </tbody>
         <thead>

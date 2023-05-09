@@ -20,18 +20,20 @@ function Header() {
           <LinkContainer to="/">
             <Navbar.Brand>E-Bloc</Navbar.Brand>
           </LinkContainer>
-          <Nav>
-            <LinkContainer to="/homepage">
-              <Nav.Link className="">Home</Nav.Link>
-            </LinkContainer>
-          </Nav>
+          {userInfo && userInfo.username && (
+            <Nav>
+              <LinkContainer to="/homepage">
+                <Nav.Link className="">Home</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          )}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
             id="basic-navbar-nav"
             className="justify-content-end"
           >
             <Nav className="mr-auto">
-              {userInfo ? (
+              {userInfo && userInfo.username ? (
                 <NavDropdown
                   title={userInfo.fullname}
                   id="username"

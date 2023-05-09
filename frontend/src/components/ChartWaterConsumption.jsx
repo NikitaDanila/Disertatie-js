@@ -34,6 +34,7 @@ export default function ChartWaterConsumption(props) {
   const { user } = userDetails;
   let consumptionArray = [];
   consumptionArray = consumption ? Object.values(consumption) : [];
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -52,6 +53,14 @@ export default function ChartWaterConsumption(props) {
       title: {
         display: true,
         text: "Water Consumption",
+      },
+    },
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
       },
     },
   };
@@ -75,9 +84,20 @@ export default function ChartWaterConsumption(props) {
     labels,
     datasets: [
       {
+        label: "Apa consumata - metrii cubi",
         data: consumption ? consumptionArray.slice(1, 13) : null,
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "blue",
       },
+      // {
+      //   label: "Total pierderi - metrii cubi",
+      //   data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
+      //   backgroundColor: "red",
+      // },
+      // {
+      //   label: "Totatl intretinere",
+      //   data: labels.map(() => faker.datatype.number({ min: 0, max: 350 })),
+      //   backgroundColor: "green",
+      // },
     ],
   };
   return <Bar options={options} data={data} />;
