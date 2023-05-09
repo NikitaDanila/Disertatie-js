@@ -8,9 +8,11 @@ import { getUserDetails } from "../actions/userActions";
 import { getWaterConsumptionDetails } from "../actions/waterConsumptionActions";
 import ChartWaterConsumption from "../components/ChartWaterConsumption";
 import ModalInfoAssociation from "../components/ModalInfoAssociation";
+import ModalUpdateWaterConsumption from "../components/ModalUpdateWaterConsumption";
 
 function HomeScreen() {
   const [showModal, setShowModal] = useState(false);
+  const [showModalUpdate, setShowModalUpdate] = useState(false);
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
@@ -55,8 +57,19 @@ function HomeScreen() {
           onHide={() => setShowModal(false)}
         />
       </Row>
-      <Row>
+      <Row className="justify-content-center">
         <ChartWaterConsumption consumption={consumption} />
+        <Button
+          style={{ width: "auto" }}
+          size="sm"
+          onClick={() => setShowModalUpdate(!showModalUpdate)}
+        >
+          Update
+        </Button>
+        <ModalUpdateWaterConsumption
+          show={showModalUpdate}
+          onHide={() => setShowModalUpdate(!showModalUpdate)}
+        />
       </Row>
     </Container>
   );

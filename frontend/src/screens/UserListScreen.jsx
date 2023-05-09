@@ -14,7 +14,7 @@ import { deleteUser, getUserDetails, listUsers } from "../actions/userActions";
 import Message from "../components/Message";
 import ModalCreateUser from "../components/ModalCreateUser";
 import ModalInfoUser from "../components/ModalInfoUser";
-import UserUpdateModal from "../components/ModalUserUpdate";
+import ModalUpdateUser from "../components/ModalUpdateUser";
 function UserListScreen() {
   const [modalShow, setModalShow] = useState(false);
   const [createModalShow, setCreateModalShow] = useState(false);
@@ -124,7 +124,7 @@ function UserListScreen() {
             </tr>
           ))}
         </tbody>
-        <UserUpdateModal show={modalShow} onHide={() => setModalShow(false)} />
+        <ModalUpdateUser show={modalShow} onHide={() => setModalShow(false)} />
       </Table>
       <ModalCreateUser
         show={createModalShow}

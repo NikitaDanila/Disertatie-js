@@ -25,3 +25,60 @@ def getAllWaterConsumption(request):
     waterConsumption = WaterConsumption.objects.all()
     serializer = WaterConsumptionSerializer(waterConsumption, many=True)
     return Response(serializer.data)
+
+
+@api_view(['PUT', 'GET'])
+@permission_classes([IsAuthenticated])
+def updateWaterConsumption(request):
+    data = request.data
+    user= request.user
+    profile = Profile.objects.get(user=user.id)
+    water_consumption = WaterConsumption.objects.get(profile=profile)
+
+    if(request.method == 'PUT'):
+        water_consumption.january = data['january']
+        water_consumption.february = data['february']
+        water_consumption.march = data['march']
+        water_consumption.april = data['april']
+        water_consumption.may = data['may']
+        water_consumption.june = data['june']
+        water_consumption.july = data['july']
+        water_consumption.august = data['august']
+        water_consumption.september = data['september']
+        water_consumption.october = data['october']
+        water_consumption.november = data['november']
+        water_consumption.december = data['december']
+
+    water_consumption.save()
+
+
+    serializer = WaterConsumptionSerializer(water_consumption, many=False)
+    return Response(serializer.data)
+
+@api_view(['PUT', 'GET'])
+@permission_classes([IsAdminUser])
+def adminUpdateWaterConsumption(request):
+    data = request.data
+    user= request.user
+    profile = Profile.objects.get(user=user.id)
+    water_consumption = WaterConsumption.objects.get(profile=data['profile'])
+
+    if(request.method == 'PUT'):
+        water_consumption.january = data['january']
+        water_consumption.february = data['february']
+        water_consumption.march = data['march']
+        water_consumption.april = data['april']
+        water_consumption.may = data['may']
+        water_consumption.june = data['june']
+        water_consumption.july = data['july']
+        water_consumption.august = data['august']
+        water_consumption.september = data['september']
+        water_consumption.october = data['october']
+        water_consumption.november = data['november']
+        water_consumption.december = data['december']
+
+    water_consumption.save()
+
+
+    serializer = WaterConsumptionSerializer(water_consumption, many=False)
+    return Response(serializer.data)

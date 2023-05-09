@@ -6,4 +6,5 @@ urlpatterns = [
          name="water_consumption"),
     path('getAllWaterConsumption/', views.getAllWaterConsumption,
          name="all_water_consumption"),
+path('updateWaterConsumption/', views.updateWaterConsumption, name='updateWaterConsumption'),
 ]
