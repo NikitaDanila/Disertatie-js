@@ -20,17 +20,20 @@ function Header() {
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
-          <LinkContainer to="/">
-            <Navbar.Brand>E-Bloc</Navbar.Brand>
-          </LinkContainer>
           {userInfo && userInfo.username && userInfo.isAdmin ? (
             <Nav>
+              <LinkContainer to="/admin-homepage">
+                <Navbar.Brand>E-Bloc</Navbar.Brand>
+              </LinkContainer>
               <LinkContainer to="/admin-homepage">
                 <Nav.Link className="">Home</Nav.Link>
               </LinkContainer>
             </Nav>
           ) : (
             <Nav>
+              <LinkContainer to="/admin-homepage">
+                <Navbar.Brand>E-Bloc</Navbar.Brand>
+              </LinkContainer>
               <LinkContainer to="/homepage">
                 <Nav.Link className="">Home</Nav.Link>
               </LinkContainer>

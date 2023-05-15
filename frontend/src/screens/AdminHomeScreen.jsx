@@ -16,15 +16,12 @@ import ModalUpdateWaterConsumption from "../components/ModalUpdateWaterConsumpti
 function AdminHomeScreen() {
   const [showModal, setShowModal] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
-  const [dropdownUser, setDropdownUser] = useState(" ");
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  // const userDetails = useSelector((state) => state.userDetails);
-  // const { user } = userDetails;
+  const [dropdownUser, setDropdownUser] = useState(userInfo.fullname);
 
   const associationDetails = useSelector((state) => state.associationDetails);
   const { loading, error, associations } = associationDetails;
@@ -62,16 +59,21 @@ function AdminHomeScreen() {
   return (
     <Container fluid>
       <Row className="justify-content-md-end">
-        <Dropdown onSelect={selectHandler}>
-          <Dropdown.Toggle>{dropdownUser}</Dropdown.Toggle>
-          <Dropdown.Menu>
-            {users?.map((user) => (
-              <Dropdown.Item key={user.id} as="button" eventKey={user.id}>
-                {user.fullname}
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
+        <Col>
+          <Dropdown onSelect={selectHandler}>
+            <Dropdown.Toggle size="sm" variant="light">
+              Choose User: {dropdownUser}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {users?.map((user) => (
+                <Dropdown.Item key={user.id} as="button" eventKey={user.id}>
+                  {user.fullname}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+
         <Button
           style={{ width: "auto" }}
           size="sm"
@@ -82,12 +84,8 @@ function AdminHomeScreen() {
         >
           Informatii Asociatie
         </Button>
-
-        <ModalInfoAssociation
-          show={showModal}
-          onHide={() => setShowModal(false)}
-        />
       </Row>
+
       <Row className="justify-content-center">
         <ChartWaterConsumption consumption={consumption} />
         <Button
@@ -102,6 +100,10 @@ function AdminHomeScreen() {
           onHide={() => setShowModalUpdate(!showModalUpdate)}
         />
       </Row>
+      <ModalInfoAssociation
+        show={showModal}
+        onHide={() => setShowModal(false)}
+      />
     </Container>
   );
 }
