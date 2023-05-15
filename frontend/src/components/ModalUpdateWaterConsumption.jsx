@@ -41,10 +41,10 @@ function ModalUpdateWaterConsumption(props) {
   }, [consumption]);
 
   return (
-    <Form>
-      <Modal show={props.show} onHide={props.onHide}>
-        <Modal.Header>Update Index</Modal.Header>
-        <Modal.Body>
+    <Modal show={props.show} onHide={props.onHide}>
+      <Modal.Title>Update Index</Modal.Title>
+      <Modal.Body>
+        <Form>
           <Form.Group>
             <Form.Label>January</Form.Label>
             <Form.Control
@@ -126,9 +126,9 @@ function ModalUpdateWaterConsumption(props) {
               onChange={(e) => setDecember(e.target.value)}
             ></Form.Control>
           </Form.Group>
-        </Modal.Body>
-      </Modal>
-    </Form>
+        </Form>
+      </Modal.Body>
+    </Modal>
   );
 }
 export default ModalUpdateWaterConsumption;
