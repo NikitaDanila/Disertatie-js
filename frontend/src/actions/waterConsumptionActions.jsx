@@ -43,6 +43,39 @@ export const getWaterConsumptionDetails = () => async (dispatch, getState) => {
     });
   }
 };
+export const getWaterConsumptionDetailsById =
+  (id) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: WATER_CONSUMPTION_REQUEST,
+      });
+      const {
+        userLogin: { userInfo },
+      } = getState();
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      const { data } = await axios.get(
+        `/api/waterConsumption/getWaterConsumptionById/${id}`,
+        config
+      );
+      dispatch({
+        type: WATER_CONSUMPTION_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: WATER_CONSUMPTION_FAIL,
+        payload:
+          error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+      });
+    }
+  };
 
 export const updateWaterConsumptionDetails =
   (waterConsumption) => async (dispatch, getState) => {

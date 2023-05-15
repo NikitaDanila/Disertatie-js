@@ -21,6 +21,17 @@ def getWaterConsumption(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getWaterConsumptionById(request, pk):
+
+    profile = Profile.objects.get(user=pk)
+    waterConsumption = WaterConsumption.objects.get(
+        profile__profile_id=profile.profile_id)
+    serializer = WaterConsumptionSerializer(waterConsumption, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
 def getAllWaterConsumption(request):
     waterConsumption = WaterConsumption.objects.all()
     serializer = WaterConsumptionSerializer(waterConsumption, many=True)
@@ -31,11 +42,11 @@ def getAllWaterConsumption(request):
 @permission_classes([IsAuthenticated])
 def updateWaterConsumption(request):
     data = request.data
-    user= request.user
+    user = request.user
     profile = Profile.objects.get(user=user.id)
     water_consumption = WaterConsumption.objects.get(profile=profile)
 
-    if(request.method == 'PUT'):
+    if (request.method == 'PUT'):
         water_consumption.january = data['january']
         water_consumption.february = data['february']
         water_consumption.march = data['march']
@@ -51,19 +62,19 @@ def updateWaterConsumption(request):
 
     water_consumption.save()
 
-
     serializer = WaterConsumptionSerializer(water_consumption, many=False)
     return Response(serializer.data)
+
 
 @api_view(['PUT', 'GET'])
 @permission_classes([IsAdminUser])
 def adminUpdateWaterConsumption(request):
     data = request.data
-    user= request.user
+    user = request.user
     profile = Profile.objects.get(user=user.id)
     water_consumption = WaterConsumption.objects.get(profile=data['profile'])
 
-    if(request.method == 'PUT'):
+    if (request.method == 'PUT'):
         water_consumption.january = data['january']
         water_consumption.february = data['february']
         water_consumption.march = data['march']
@@ -78,7 +89,6 @@ def adminUpdateWaterConsumption(request):
         water_consumption.december = data['december']
 
     water_consumption.save()
-
 
     serializer = WaterConsumptionSerializer(water_consumption, many=False)
     return Response(serializer.data)

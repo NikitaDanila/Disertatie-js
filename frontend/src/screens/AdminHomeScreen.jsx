@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAssociationDetails } from "../actions/associationActions";
 import { listUsers } from "../actions/userActions";
-import { getWaterConsumptionDetails } from "../actions/waterConsumptionActions";
+import {
+  getWaterConsumptionDetails,
+  getWaterConsumptionDetailsById,
+} from "../actions/waterConsumptionActions";
 import ChartWaterConsumption from "../components/ChartWaterConsumption";
 import ModalInfoAssociation from "../components/ModalInfoAssociation";
 import ModalUpdateWaterConsumption from "../components/ModalUpdateWaterConsumption";
@@ -13,6 +16,7 @@ import ModalUpdateWaterConsumption from "../components/ModalUpdateWaterConsumpti
 function AdminHomeScreen() {
   const [showModal, setShowModal] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const [dropdownUser, setDropdownUser] = useState(" ");
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
@@ -34,26 +38,37 @@ function AdminHomeScreen() {
   const { users } = userList;
 
   useEffect(() => {
+    if (!userInfo && !userInfo.isAdmin) {
+      navigateTo("/login");
+    }
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     }
 
-    if (!userInfo && !userInfo.isAdmin) {
-      navigateTo("/login");
-    }
     if (userInfo.username && !consumption) {
       dispatch(getWaterConsumptionDetails());
     }
   }, [consumption, userInfo, navigateTo, dispatch]);
 
+  const selectHandler = (id) => {
+    dispatch(getWaterConsumptionDetailsById(id));
+    users.forEach((user) => {
+      if (user.id == id) {
+        setDropdownUser(user.fullname);
+      }
+    });
+  };
+
   return (
     <Container fluid>
       <Row className="justify-content-md-end">
-        <Dropdown>
-          <Dropdown.Toggle>DropDown Button</Dropdown.Toggle>
+        <Dropdown onSelect={selectHandler}>
+          <Dropdown.Toggle>{dropdownUser}</Dropdown.Toggle>
           <Dropdown.Menu>
             {users?.map((user) => (
-              <Dropdown.Item key={user.id}>{user.fullname}</Dropdown.Item>
+              <Dropdown.Item key={user.id} as="button" eventKey={user.id}>
+                {user.fullname}
+              </Dropdown.Item>
             ))}
           </Dropdown.Menu>
         </Dropdown>

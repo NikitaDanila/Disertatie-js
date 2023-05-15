@@ -23,8 +23,12 @@ function Login() {
   const { error, loading, userInfo } = userLogin;
 
   useEffect(() => {
-    if (userInfo && userInfo.username) {
-      navigateTo("/homepage");
+    if (userInfo && userInfo.isAdmin) {
+      navigateTo("/admin-homepage");
+    } else {
+      if (userInfo && userInfo.userInfo) {
+        navigateTo("/homepage");
+      }
     }
   });
 

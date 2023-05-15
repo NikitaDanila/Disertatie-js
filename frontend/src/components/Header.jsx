@@ -1,6 +1,7 @@
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { logout } from "../actions/userActions";
 
 function Header() {
@@ -8,9 +9,11 @@ function Header() {
   const { userInfo } = userLogin;
 
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
 
   const logoutHandler = () => {
     dispatch(logout());
+    navigateTo("/login");
   };
 
   return (
@@ -20,7 +23,13 @@ function Header() {
           <LinkContainer to="/">
             <Navbar.Brand>E-Bloc</Navbar.Brand>
           </LinkContainer>
-          {userInfo && userInfo.username && (
+          {userInfo && userInfo.username && userInfo.isAdmin ? (
+            <Nav>
+              <LinkContainer to="/admin-homepage">
+                <Nav.Link className="">Home</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          ) : (
             <Nav>
               <LinkContainer to="/homepage">
                 <Nav.Link className="">Home</Nav.Link>
