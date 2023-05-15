@@ -62,7 +62,7 @@ function AdminHomeScreen() {
         <Col>
           <Dropdown onSelect={selectHandler}>
             <Dropdown.Toggle size="sm" variant="light">
-              Choose User: {dropdownUser}
+              User: {dropdownUser}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {users?.map((user) => (

@@ -48,6 +48,7 @@ function ModalUpdateWaterConsumption(props) {
     e.preventDefault();
     dispatch(
       updateWaterConsumptionDetails({
+        pk: consumption.profile,
         january,
         february,
         march,

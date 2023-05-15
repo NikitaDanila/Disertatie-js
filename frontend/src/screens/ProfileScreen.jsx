@@ -63,7 +63,7 @@ function ProfileScreen() {
   };
   return (
     <Container>
-      <h2>User Profile</h2>
+      <h2>{userInfo.fullname}</h2>
       {message && <Message variant="danger">{message}</Message>}
       <Form onSubmit={submitHandler}>
         <Row>
@@ -71,6 +71,7 @@ function ProfileScreen() {
             <Image
               width={320}
               height={320}
+              border="2px"
               className="rounded-circle img-fluid"
               src={profile_picture}
             />

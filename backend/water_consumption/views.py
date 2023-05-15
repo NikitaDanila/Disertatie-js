@@ -40,10 +40,10 @@ def getAllWaterConsumption(request):
 
 @api_view(['PUT', 'GET'])
 @permission_classes([IsAuthenticated])
-def updateWaterConsumption(request):
+def updateWaterConsumption(request, pk):
     data = request.data
     user = request.user
-    profile = Profile.objects.get(user=user.id)
+    profile = Profile.objects.get(user=pk)
     water_consumption = WaterConsumption.objects.get(profile=profile)
 
     if (request.method == 'PUT'):

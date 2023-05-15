@@ -86,6 +86,7 @@ export const updateWaterConsumptionDetails =
       const {
         userLogin: { userInfo },
       } = getState();
+      const { pk } = waterConsumption;
       const config = {
         headers: {
           "Content-type": "application/json",
@@ -93,7 +94,7 @@ export const updateWaterConsumptionDetails =
         },
       };
       const { data } = await axios.put(
-        "/api/waterConsumption/updateWaterConsumption/",
+        `/api/waterConsumption/updateWaterConsumption/${pk}`,
         waterConsumption,
         config
       );

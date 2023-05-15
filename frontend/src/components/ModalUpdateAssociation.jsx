@@ -182,7 +182,6 @@ function ModalUpdateAssociation(props) {
           </Button>
         </Form>
       </Modal.Body>
-      <Modal.Footer></Modal.Footer>
     </Modal>
   );
 }

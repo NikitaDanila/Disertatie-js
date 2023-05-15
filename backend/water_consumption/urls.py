@@ -8,6 +8,6 @@ urlpatterns = [
          name="getWaterConsumptionById"),
     path('getAllWaterConsumption/', views.getAllWaterConsumption,
          name="all_water_consumption"),
-    path('updateWaterConsumption/', views.updateWaterConsumption,
+    path('updateWaterConsumption/<str:pk>', views.updateWaterConsumption,
          name='updateWaterConsumption'),
 ]

@@ -12,7 +12,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserDetails } from "../actions/userActions";
@@ -61,6 +61,8 @@ export default function ChartWaterConsumption(props) {
       },
       y: {
         stacked: true,
+        // max: 200,
+        beginAtZero: true,
       },
     },
   };
@@ -86,17 +88,16 @@ export default function ChartWaterConsumption(props) {
       {
         label: "Apa consumata - metrii cubi",
         data: consumption ? consumptionArray.slice(1, 13) : null,
-        backgroundColor: "blue",
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        borderColor: "rgb(54, 162, 235)",
+        borderWidth: 1,
       },
       // {
-      //   label: "Total pierderi - metrii cubi",
-      //   data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
-      //   backgroundColor: "red",
-      // },
-      // {
-      //   label: "Totatl intretinere",
-      //   data: labels.map(() => faker.datatype.number({ min: 0, max: 350 })),
-      //   backgroundColor: "green",
+      //   label: "Intretinere",
+      //   data: labels.map(() => faker.datatype.number({ min: 0, max: 200 })),
+      //   backgroundColor: "rgba(255, 99, 132, 0.2)",
+      //   borderColor: "rgb(255, 99, 132)",
+      //   borderWidth: 1,
       // },
     ],
   };

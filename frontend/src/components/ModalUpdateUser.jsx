@@ -75,85 +75,81 @@ function ModalUpdateUser(props) {
   };
   return (
     <Modal {...props}>
-      <Form onSubmit={submitHandler}>
-        <Modal.Dialog>
-          <Modal.Header closeButton>
-            <Modal.Title>Update User</Modal.Title>
-          </Modal.Header>
+      <Modal.Header closeButton>
+        <Modal.Title>Update User</Modal.Title>
+      </Modal.Header>
 
-          <Modal.Body>
-            <Form.Group controlId="fist_name">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="name"
-                placeholder="Enter First Name"
-                value={first_name}
-                onChange={(e) => setFirstName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="last_name">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="name"
-                placeholder="Enter Last Name"
-                value={last_name}
-                onChange={(e) => setLastName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="email">
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="apartment_number">
-              <Form.Label>Apartment Number</Form.Label>
-              <Form.Control
-                value={apartment_number}
-                onChange={(e) => setApartmentNumber(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="mobile_number">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                value={mobile_number}
-                onChange={(e) => setMobileNumber(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <FormGroup>
-              <Form.Label>Association</Form.Label>
-              {association ? (
-                <Form.Control value={association.name} readOnly></Form.Control>
-              ) : (
-                <Form.Select required onChange={(e) => setFoo(e.target.value)}>
-                  <option>Choose an Association</option>
-                  {associations.map((association) => (
-                    <option key={association.id} value={association.id}>
-                      {association.name}
-                    </option>
-                  ))}
-                </Form.Select>
-              )}
-            </FormGroup>
-            <Form.Group controlId="isAdmin">
-              <Form.Check
-                type="checkbox"
-                label="Admin"
-                checked={isAdmin}
-                onChange={(e) => setIsAdmin(e.target.checked)}
-              ></Form.Check>
-            </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button type="submit" variant="outline-dark" onClick={props.onHide}>
-              Update
-            </Button>
-          </Modal.Footer>
-        </Modal.Dialog>
-      </Form>
+      <Modal.Body>
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId="fist_name">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control
+              type="name"
+              placeholder="Enter First Name"
+              value={first_name}
+              onChange={(e) => setFirstName(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="last_name">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
+              type="name"
+              placeholder="Enter Last Name"
+              value={last_name}
+              onChange={(e) => setLastName(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="email">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="apartment_number">
+            <Form.Label>Apartment Number</Form.Label>
+            <Form.Control
+              value={apartment_number}
+              onChange={(e) => setApartmentNumber(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="mobile_number">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              value={mobile_number}
+              onChange={(e) => setMobileNumber(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <FormGroup>
+            <Form.Label>Association</Form.Label>
+            {association ? (
+              <Form.Control value={association.name} readOnly></Form.Control>
+            ) : (
+              <Form.Select required onChange={(e) => setFoo(e.target.value)}>
+                <option>Choose an Association</option>
+                {associations.map((association) => (
+                  <option key={association.id} value={association.id}>
+                    {association.name}
+                  </option>
+                ))}
+              </Form.Select>
+            )}
+          </FormGroup>
+          <Form.Group controlId="isAdmin">
+            <Form.Check
+              type="checkbox"
+              label="Admin"
+              checked={isAdmin}
+              onChange={(e) => setIsAdmin(e.target.checked)}
+            ></Form.Check>
+          </Form.Group>
+          <Button type="submit" variant="outline-dark" onClick={props.onHide}>
+            Update
+          </Button>
+        </Form>
+      </Modal.Body>
     </Modal>
   );
 }
