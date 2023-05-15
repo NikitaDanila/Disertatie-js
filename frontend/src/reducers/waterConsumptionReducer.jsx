@@ -1,5 +1,9 @@
 import {
   WATER_CONSUMPTION_FAIL,
+  WATER_CONSUMPTION_LIST_FAIL,
+  WATER_CONSUMPTION_LIST_REQUEST,
+  WATER_CONSUMPTION_LIST_RESET,
+  WATER_CONSUMPTION_LIST_SUCCESS,
   WATER_CONSUMPTION_REQUEST,
   WATER_CONSUMPTION_RESET,
   WATER_CONSUMPTION_SUCCESS,
@@ -39,6 +43,28 @@ export const updateWaterConsumptionReducer = (state = {}, action) => {
 
     case WATER_CONSUMPTION_RESET:
       return { loading: true, consumption: {} };
+
+    default:
+      return state;
+  }
+};
+
+export const waterConsumptionListReducer = (
+  state = { waterList: [] },
+  action
+) => {
+  switch (action.type) {
+    case WATER_CONSUMPTION_LIST_REQUEST:
+      return { loading: true };
+
+    case WATER_CONSUMPTION_LIST_SUCCESS:
+      return { loading: false, waterList: action.payload };
+
+    case WATER_CONSUMPTION_LIST_FAIL:
+      return { loading: false, error: action.payload };
+
+    case WATER_CONSUMPTION_LIST_RESET:
+      return { waterList: {} };
 
     default:
       return state;

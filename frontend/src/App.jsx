@@ -9,10 +9,10 @@ import AssociationListScreen from "./screens/AssociationListScreen";
 import HomeScreen from "./screens/HomeScreen";
 import IndexScreen from "./screens/IndexScreen";
 import Login from "./screens/LoginScreen";
+import MetersScreen from "./screens/MetersScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import UserListScreen from "./screens/UserListScreen";
-
 function App() {
   return (
     <Router>
@@ -32,6 +32,7 @@ function App() {
               path="/admin/associationList/"
               element={<AssociationListScreen />}
             />
+            <Route path="/admin/meters" element={<MetersScreen />} />
           </Routes>
         </Container>
       </main>

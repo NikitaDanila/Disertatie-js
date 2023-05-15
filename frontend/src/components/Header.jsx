@@ -28,6 +28,9 @@ function Header() {
               <LinkContainer to="/admin-homepage">
                 <Nav.Link className="">Home</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/admin/meters">
+                <Nav.Link className="">Meters</Nav.Link>
+              </LinkContainer>
             </Nav>
           ) : (
             <Nav>

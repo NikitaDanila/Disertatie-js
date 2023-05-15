@@ -21,6 +21,7 @@ import {
 } from "./reducers/userReducers";
 import {
   updateWaterConsumptionReducer,
+  waterConsumptionListReducer,
   waterConsumptionReducer,
 } from "./reducers/waterConsumptionReducer";
 
@@ -42,6 +43,7 @@ const reducer = combineReducers({
 
   waterConsumptionDetails: waterConsumptionReducer,
   waterConsumptionUpdate: updateWaterConsumptionReducer,
+  waterConsumptionList: waterConsumptionListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
