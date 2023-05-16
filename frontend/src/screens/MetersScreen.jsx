@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import _ from "lodash";
 import { useEffect, useState } from "react";
-import { Button, Form, Modal, Table } from "react-bootstrap";
+import { Button, Dropdown, Form, Modal, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listUsers } from "../actions/userActions";
 import { getWaterConsumptionList } from "../actions/waterConsumptionActions";
@@ -30,44 +30,58 @@ function MetersScreen() {
     }
   }, [userInfo]);
   return (
-    <Table bordered="true" striped="true">
-      {users?.map((user, index) => (
-        <>
-          <thead key={user.id}>
-            <tr>
+    <>
+      <Dropdown>
+        <Dropdown.Toggle>Alegeti Luna</Dropdown.Toggle>
+        <Dropdown.Menu>
+          {waterList
+            ? Object.keys(waterList[0])
+                .slice(1, 13)
+                .map((month, index) => (
+                  <Dropdown.Item key={month}>{month}</Dropdown.Item>
+                ))
+            : null}
+        </Dropdown.Menu>
+      </Dropdown>
+      <Table bordered="true" striped="true">
+        {users?.map((user, index) => (
+          <>
+            <thead key={user.id}>
               <td>{user.fullname}</td>
-            </tr>
-          </thead>
-          <tbody>
-            <Table bordered="true" striped="true">
-              <thead>
-                <tr>
-                  <td>index precedent</td>
-                  <td>index curent</td>
-                  <td>diferenta</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{waterList ? waterList[index].january : null} m&sup3;</td>
-                  <td>
-                    {waterList ? waterList[index].february : null} m&sup3;
-                  </td>
-                  <td>
-                    {waterList
-                      ? Math.abs(
-                          waterList[index].february - waterList[index].january
-                        ).toFixed(2)
-                      : null}{" "}
-                    m&sup3;
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
-          </tbody>
-        </>
-      ))}
-    </Table>
+            </thead>
+            <tbody>
+              <Table bordered="true" striped="true">
+                <thead>
+                  <tr>
+                    <th>index precedent</th>
+                    <th>index curent</th>
+                    <th>diferenta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {waterList ? waterList[index].january : null} m&sup3;
+                    </td>
+                    <td>
+                      {waterList ? waterList[index].february : null} m&sup3;
+                    </td>
+                    <td>
+                      {waterList
+                        ? Math.abs(
+                            waterList[index].february - waterList[index].january
+                          ).toFixed(2)
+                        : null}{" "}
+                      m&sup3;
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </tbody>
+          </>
+        ))}
+      </Table>
+    </>
   );
 }
 
