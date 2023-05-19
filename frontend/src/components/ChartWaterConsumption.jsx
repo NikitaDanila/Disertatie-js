@@ -87,7 +87,7 @@ export default function ChartWaterConsumption(props) {
     datasets: [
       {
         label: "Apa consumata - metrii cubi",
-        data: consumption ? consumptionArray.slice(1, 13) : null,
+        data: consumption ? consumptionArray : null,
         backgroundColor: "rgba(54, 162, 235, 0.2)",
         borderColor: "rgb(54, 162, 235)",
         borderWidth: 1,

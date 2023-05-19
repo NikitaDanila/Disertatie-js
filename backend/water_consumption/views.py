@@ -92,3 +92,52 @@ def adminUpdateWaterConsumption(request):
 
     serializer = WaterConsumptionSerializer(water_consumption, many=False)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getWaterConsumptionByMonth(request, pk, month):
+    current = 0
+    previous = 0
+    water_consumption = WaterConsumption.objects.get(profile=pk)
+    match month:
+        case '0':
+            current = water_consumption.january
+            previous = 0
+        case '1':
+            current = water_consumption.february
+            previous = water_consumption.january
+        case '2':
+            current = water_consumption.march
+            previous = water_consumption.february
+        case '3':
+            current = water_consumption.april
+            previous = water_consumption.march
+        case '4':
+            current = water_consumption.may
+            previous = water_consumption.april
+        case '5':
+            current = water_consumption.june
+            previous = water_consumption.may
+        case '6':
+            current = water_consumption.july
+            previous = water_consumption.june
+        case '7':
+            current = water_consumption.august
+            previous = water_consumption.july
+        case '8':
+            current = water_consumption.september
+            previous = water_consumption.august
+        case '9':
+            current = water_consumption.october
+            previous = water_consumption.september
+        case '10':
+            current = water_consumption.november
+            previous = water_consumption.october
+        case '11':
+            current = water_consumption.december
+            previous = water_consumption.november
+        case _:
+            return Response(current)
+    return Response({'current': current,
+                     'previous': previous,
+                     'profile': water_consumption.profile.profile_id})

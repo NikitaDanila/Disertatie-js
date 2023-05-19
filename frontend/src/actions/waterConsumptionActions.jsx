@@ -5,6 +5,10 @@ import {
   WATER_CONSUMPTION_LIST_REQUEST,
   WATER_CONSUMPTION_LIST_RESET,
   WATER_CONSUMPTION_LIST_SUCCESS,
+  WATER_CONSUMPTION_MONTH_FAIL,
+  WATER_CONSUMPTION_MONTH_REQUEST,
+  WATER_CONSUMPTION_MONTH_RESET,
+  WATER_CONSUMPTION_MONTH_SUCCESS,
   WATER_CONSUMPTION_REQUEST,
   WATER_CONSUMPTION_RESET,
   WATER_CONSUMPTION_SUCCESS,
@@ -98,7 +102,7 @@ export const updateWaterConsumptionDetails =
         },
       };
       const { data } = await axios.put(
-        `/api/waterConsumption/updateWaterConsumption/${pk}`,
+        `/api/waterConsumption/updateWaterConsumption/${pk}/`,
         waterConsumption,
         config
       );
@@ -149,3 +153,39 @@ export const getWaterConsumptionList = () => async (dispatch, getState) => {
     });
   }
 };
+
+export const getWaterConsumptionMonth =
+  (thisMonth) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: WATER_CONSUMPTION_MONTH_REQUEST,
+      });
+      const {
+        userLogin: { userInfo },
+      } = getState();
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      const { profile, month } = thisMonth;
+      const { data } = await axios.get(
+        `/api/waterConsumption/getWaterConsumptionByMonth/${profile}/${month}`,
+        thisMonth,
+        config
+      );
+      dispatch({
+        type: WATER_CONSUMPTION_MONTH_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: WATER_CONSUMPTION_MONTH_FAIL,
+        payload:
+          error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+      });
+    }
+  };

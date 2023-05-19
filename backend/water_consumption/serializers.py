@@ -6,4 +6,5 @@ from .models import WaterConsumption
 class WaterConsumptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = WaterConsumption
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ['id', 'year', 'total']
