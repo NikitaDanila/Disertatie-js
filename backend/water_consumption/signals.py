@@ -7,7 +7,6 @@ from .models import WaterConsumption
 
 @receiver(post_save, sender=Profile)
 def createWaterConsumptionEntry(sender, instance, created, **kwargs):
-    print('Signal Triggered')
     if created:
         profile = instance
         water_consumption = WaterConsumption.objects.create(

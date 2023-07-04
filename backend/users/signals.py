@@ -8,8 +8,8 @@ from django.dispatch import receiver
 @receiver(pre_save, sender=User)
 def updateUser(sender, instance, **kwargs):
     user = instance
-    if user.email != "":
-        user.username = user.email
+    if user.username != user.email:
+        user.email = user.username
 
 
 @receiver(post_save, sender=User)

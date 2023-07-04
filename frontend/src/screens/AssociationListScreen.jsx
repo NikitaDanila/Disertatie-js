@@ -9,7 +9,7 @@ import {
   getAssociationDetailsById,
   getAssociationsList,
 } from "../actions/associationActions.jsx";
-import ModalInfoAssociationById from "../components/ModalInfoAssociation";
+import ModalInfoAssociationById from "../components/ModalInfoAssociationById";
 import ModalRegisterAssociation from "../components/ModalRegisterAssociation.jsx";
 import ModalUpdateAssociation from "../components/ModalUpdateAssociation.jsx";
 function AssociationListScreen() {

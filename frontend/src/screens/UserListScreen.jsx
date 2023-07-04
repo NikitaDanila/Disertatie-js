@@ -46,6 +46,7 @@ function UserListScreen() {
     if (window.confirm("Delete permanently?")) {
       dispatch(deleteUser(id));
     }
+    dispatch(listUsers());
   };
   const handleInfo = (id) => {
     dispatch(getAssociationDetails(id));
@@ -104,8 +105,8 @@ function UserListScreen() {
                   variant="light"
                   className="btn-sm m-1"
                   onClick={() => {
-                    setModalShow(true);
                     dispatch(getUserDetails(user.id));
+                    setModalShow(true);
                     handleInfo(user.id);
                   }}
                 >

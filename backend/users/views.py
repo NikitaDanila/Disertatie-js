@@ -106,21 +106,20 @@ def updateUser(request, pk):
     profile = Profile.objects.get(user=user.id)
 
     data = request.data
+    try:
+        user.first_name = data['first_name']
+        user.last_name = data['last_name']
+        user.email = data['email']
+        user.is_staff = data['isAdmin']
 
-    user.first_name = data['first_name']
-    user.last_name = data['last_name']
-    user.email = data['email']
-    user.is_staff = data['isAdmin']
+        profile.apartment_number = data['apartment_number']
+        profile.mobile_number = data['mobile_number']
 
-    profile.apartment_number = data['apartment_number']
-    profile.mobile_number = data['mobile_number']
-    if (data['foo'] != None):
-        print('entered')
-        profile.association = Association.objects.get(
-            id=data['foo'])
-
-    profile.save()
-    user.save()
+        user.save()
+        profile.save()
+        print("Profile Updated")
+    except:
+        pass
 
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
