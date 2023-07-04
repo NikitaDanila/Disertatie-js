@@ -131,7 +131,7 @@ export const adminRegister =
       };
 
       const { data } = await axios.post(
-        "/api/users/register/",
+        "/api/users/adminRegisterUser/",
         {
           first_name: first_name,
           last_name: last_name,

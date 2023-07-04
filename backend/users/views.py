@@ -62,22 +62,22 @@ def adminRegisterUser(request):
             is_staff=data['isAdmin'],
             password=data['password']
         )
-        profile = Profile.objects.create(
-            user=user,
-            profile_id=user.id,
-            username=user.email,
-            first_name=user.first_name,
-            last_name=user.last_name,
-            email=user.email,
-            apartment_number=data['apartment_number'],
-            mobile_number=data['mobile_number'],
-            association=Association.objects.get(id=data['foo']),
-            isAdmin=user.is_staff
-        )
-        profile.save()
+        # profile = Profile.objects.create(
+        #     user=user,
+        #     profile_id=user.id,
+        #     username=user.email,
+        #     first_name=user.first_name,
+        #     last_name=user.last_name,
+        #     email=user.email,
+        #     apartment_number=data['apartment_number'],
+        #     mobile_number=data['mobile_number'],
+        #     association=Association.objects.get(id=data['foo']),
+        #     isAdmin=user.is_staff
+        # )
+        # profile.save()
         user_serializer = UserSerializerWithToken(user, many=False)
-        profile_serializer = ProfileSerializer(profile, many=False)
-        return Response(user_serializer.data, profile_serializer.data)
+        # profile_serializer = ProfileSerializer(profile, many=False)
+        return Response(user_serializer.data)
     except:
         message = {'detail': 'User with this email already exists'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
