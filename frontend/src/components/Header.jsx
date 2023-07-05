@@ -31,6 +31,9 @@ function Header() {
               <LinkContainer to="/admin/meters">
                 <Nav.Link className="">Meters</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/admin/avizier">
+                <Nav.Link className="">Avizier</Nav.Link>
+              </LinkContainer>
             </Nav>
           ) : (
             <Nav>
@@ -39,6 +42,9 @@ function Header() {
               </LinkContainer>
               <LinkContainer to="/homepage">
                 <Nav.Link className="">Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/avizier">
+                <Nav.Link className="">Avizier</Nav.Link>
               </LinkContainer>
             </Nav>
           )}

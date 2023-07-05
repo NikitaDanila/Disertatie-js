@@ -10,6 +10,6 @@ urlpatterns = [
          name="all_water_consumption"),
     path('updateWaterConsumption/<str:pk>/', views.updateWaterConsumption,
          name='updateWaterConsumption'),
-    path('getWaterConsumptionByMonth/<str:pk>/<str:month>/', views.getWaterConsumptionByMonth,
-         name='getWaterConsumptionByMonth'),
+    #     path('getWaterConsumptionByMonth/<str:pk>/<str:month>/', views.getWaterConsumptionByMonth,
+    #          name='getWaterConsumptionByMonth'),
 ]

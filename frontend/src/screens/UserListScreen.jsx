@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import {
   getAssociationDetails,
   getAssociationDetailsById,
+  getAssociationsList,
 } from "../actions/associationActions";
 import { deleteUser, getUserDetails, listUsers } from "../actions/userActions";
 import Message from "../components/Message";
@@ -37,6 +38,7 @@ function UserListScreen() {
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
+      dispatch(getAssociationsList());
     } else {
       navigateTo("/register");
     }

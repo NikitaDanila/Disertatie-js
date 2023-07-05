@@ -17,6 +17,7 @@ function ModalCreateUser(props) {
   const [apartment_number, setApartmentNumber] = useState("");
   const [mobile_number, setMobileNumber] = useState("");
   const [password, setPassword] = useState("*2369fF^$");
+  const [foo, setFoo] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -34,13 +35,15 @@ function ModalCreateUser(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      register({
+      adminRegister({
         first_name,
         last_name,
         email,
         isAdmin,
         mobile_number,
         apartment_number,
+        password,
+        foo,
       })
     );
   };
@@ -82,6 +85,7 @@ function ModalCreateUser(props) {
           <Form.Group controlId="apartment_number">
             <Form.Label>Apartment Number</Form.Label>
             <Form.Control
+              type="name"
               value={apartment_number}
               onChange={(e) => setApartmentNumber(e.target.value)}
             ></Form.Control>
@@ -89,13 +93,14 @@ function ModalCreateUser(props) {
           <Form.Group controlId="mobile_number">
             <Form.Label>Phone Number</Form.Label>
             <Form.Control
+              type="name"
               value={mobile_number}
               onChange={(e) => setMobileNumber(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Form.Group>
             <Form.Label>Association</Form.Label>
-            <Form.Select required onChange={(e) => null}>
+            <Form.Select required onChange={(e) => setFoo(e.target.value)}>
               <option>Choose an Association</option>
               {associations.map((association) => (
                 <option key={association.id} value={association.id}>
@@ -113,7 +118,7 @@ function ModalCreateUser(props) {
             ></Form.Check>
           </Form.Group>
           <Button type="submit" variant="outline-dark" onClick={props.onHide}>
-            Update
+            Create User
           </Button>
         </Form>
       </Modal.Body>

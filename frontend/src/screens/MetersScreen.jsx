@@ -28,39 +28,10 @@ function MetersScreen() {
     }
   }, [userInfo]);
 
-  const currentMonth = new Date().getMonth();
-  const monthsArray = [
-    "january",
-    "february",
-    "march",
-    "april",
-    "may",
-    "june",
-    "july",
-    "august",
-    "september",
-    "october",
-    "november",
-    "december",
-  ];
   return (
     <>
-      <Dropdown>
-        <Dropdown.Toggle>Alegeti Luna</Dropdown.Toggle>
-        <Dropdown.Menu>
-          {monthsArray
-            ? monthsArray.map((month, index) => (
-                <Dropdown.Item key={month}>{month}</Dropdown.Item>
-              ))
-            : null}
-        </Dropdown.Menu>
-      </Dropdown>
-      <br />
-      {users?.map((user, index) => (
-        <>
-          <h5 key={user.id}>{user.fullname}</h5>
-          <TableMeter profile={user.id} month={currentMonth} />
-        </>
+      {users?.map((user) => (
+        <TableMeter name={user.fullname} id={user.id} key={user.id} />
       ))}
     </>
   );

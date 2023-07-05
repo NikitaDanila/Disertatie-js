@@ -4,8 +4,10 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
+import AdminAvizierScreen from "./screens/AdminAvizierScreen";
 import AdminHomeScreen from "./screens/AdminHomeScreen";
 import AssociationListScreen from "./screens/AssociationListScreen";
+import AvizierScreen from "./screens/AvizierScreen";
 import HomeScreen from "./screens/HomeScreen";
 import IndexScreen from "./screens/IndexScreen";
 import Login from "./screens/LoginScreen";
@@ -26,6 +28,8 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
+            <Route path="/avizier" element={<AvizierScreen />} />
+            <Route path="/admin/avizier" element={<AdminAvizierScreen />} />
 
             <Route path="/admin/userlist" element={<UserListScreen />} />
             <Route

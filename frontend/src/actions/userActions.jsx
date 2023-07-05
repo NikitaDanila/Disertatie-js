@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 
@@ -117,44 +118,42 @@ export const register =
       });
     }
   };
-export const adminRegister =
-  (first_name, last_name, email, password) => async (dispatch) => {
-    try {
-      dispatch({
-        type: USER_REGISTER_REQUEST,
-      });
+export const adminRegister = (user) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_REGISTER_REQUEST,
+    });
 
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
+    // const {
+    //   userLogin: { userInfo },
+    // } = getState();
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        // Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
 
-      const { data } = await axios.post(
-        "/api/users/adminRegisterUser/",
-        {
-          first_name: first_name,
-          last_name: last_name,
-          email: email,
-          password: password,
-        },
-        config
-      );
+    const { data } = await axios.post(
+      "/api/users/adminRegisterUser/",
+      user,
+      config
+    );
 
-      dispatch({
-        type: USER_REGISTER_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: USER_REGISTER_FAIL,
-        payload:
-          error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message,
-      });
-    }
-  };
+    dispatch({
+      type: USER_REGISTER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_REGISTER_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message,
+    });
+  }
+};
 
 export const getUserDetails = (id) => async (dispatch, getState) => {
   try {

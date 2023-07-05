@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import { get } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Button, Dropdown, Form, FormGroup } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
@@ -9,7 +10,12 @@ import {
   getAssociationDetails,
   getAssociationsList,
 } from "../actions/associationActions";
-import { getUserDetails, listUsers, updateUser } from "../actions/userActions";
+import {
+  getUserDetails,
+  listUsers,
+  updateUser,
+  updateUserProfile,
+} from "../actions/userActions";
 import { USER_UPDATE_RESET } from "../constants/userConstants";
 
 function ModalUpdateUser(props) {
@@ -51,7 +57,7 @@ function ModalUpdateUser(props) {
       setApartmentNumber(user.apartment_number);
       setMobileNumber(user.mobile_number);
     }
-    if (user.profile_id && user.association !== null) {
+    if (user.profile_id && user.association == null) {
       // dispatch(getAssociationDetails(user.profile_id));
       dispatch(getAssociationsList());
     }
@@ -59,6 +65,7 @@ function ModalUpdateUser(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(foo);
     dispatch(
       updateUser({
         id: user.user,
@@ -71,6 +78,7 @@ function ModalUpdateUser(props) {
         foo,
       })
     );
+    // dispatch(updateUserProfile({ foo: foo }));
     dispatch(listUsers());
   };
   return (
