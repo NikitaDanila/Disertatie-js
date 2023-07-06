@@ -26,7 +26,7 @@ function Login() {
     if (userInfo && userInfo.isAdmin) {
       navigateTo("/admin-homepage");
     } else {
-      if (userInfo && userInfo.userInfo) {
+      if (userInfo && userInfo.username) {
         navigateTo("/homepage");
       }
     }
