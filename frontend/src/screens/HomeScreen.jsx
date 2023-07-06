@@ -30,7 +30,7 @@ function HomeScreen() {
   );
   const { consumption } = waterConsumptionDetails;
   useEffect(() => {
-    if (!userInfo && !userInfo.username) {
+    if (!userInfo.username) {
       navigateTo("/login");
     }
     if (userInfo.username && !consumption) {

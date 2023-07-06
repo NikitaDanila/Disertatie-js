@@ -20,7 +20,9 @@ function IndexScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
   useEffect(() => {
-    if (userInfo && userInfo.username) {
+    if (userInfo && userInfo.isAdmin) {
+      navigateTo("/admin-homepage");
+    } else if (userInfo && userInfo.username) {
       navigateTo("/homepage");
     }
   });
