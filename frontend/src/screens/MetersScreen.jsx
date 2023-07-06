@@ -19,6 +19,11 @@ function MetersScreen() {
   const userList = useSelector((state) => state.userList);
   const { users } = userList;
 
+  const waterConsumptionList = useSelector(
+    (state) => state.waterConsumptionList
+  );
+  const { waterList } = waterConsumptionList;
+
   useEffect(() => {
     if (userInfo) {
       dispatch(getWaterConsumptionList());
@@ -31,7 +36,7 @@ function MetersScreen() {
   return (
     <>
       {users?.map((user) => (
-        <TableMeter name={user.fullname} id={user.id} key={user.id} />
+        <TableMeter name={user.fullname} key={user.id} january={null} />
       ))}
     </>
   );

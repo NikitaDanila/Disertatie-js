@@ -11,24 +11,39 @@ import {
 function TableMeter(props) {
   const dispatch = useDispatch();
   const name = props.name;
-  const id = props.id;
 
   const waterConsumptionList = useSelector(
     (state) => state.waterConsumptionList
   );
-
   const { waterList } = waterConsumptionList;
-  const foo = new Array(100);
 
   return (
-    <Table striped bordered>
+    <Table striped bordered foo>
       <thead>
         <tr>
           <th>{name}</th>
         </tr>
       </thead>
       <tbody>
-        <tr></tr>
+        <tr>
+          <td>January</td>
+          <td>February</td>
+          <td>March</td>
+          <td>April</td>
+          <td>May</td>
+          <td>June</td>
+          <td>July</td>
+          <td>August</td>
+          <td>September</td>
+          <td>October</td>
+          <td>November</td>
+          <td>December</td>
+        </tr>
+        <tr>
+          {waterList?.map((oneUser) =>
+            Object.values(oneUser).map((value) => <td key={value}>{value}</td>)
+          )}
+        </tr>
       </tbody>
     </Table>
   );
